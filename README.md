@@ -72,7 +72,7 @@ Route ideas through AI-guided PM review into GitHub pull requests automatically
 
 Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
 
-<sub>Python — 1 write-up</sub>
+<sub>Python — 2 write-ups</sub>
 
 ### [Binance Carry Bot](projects/binance-carry-bot.md)
 
