@@ -36,7 +36,7 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 _No description yet._
 
-<sub>Python</sub>
+<sub>Python — 1 write-up</sub>
 
 ### [Marcus Edge](projects/marcusedge.md)
 
