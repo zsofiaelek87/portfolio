@@ -24,7 +24,7 @@ _No description yet._
 
 _No description yet._
 
-<sub>TypeScript</sub>
+<sub>TypeScript — 1 write-up</sub>
 
 ### [RankWise](projects/rankwise.md)
 
