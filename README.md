@@ -6,7 +6,7 @@
 
 Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
 
-<sub>Python — 2 write-ups</sub>
+<sub>Python — 3 write-ups</sub>
 
 ### [Study App](projects/studyapp.md)
 
