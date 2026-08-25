@@ -24,4 +24,17 @@ The practical consequence: the system does not just summarise what happened. It 
 
 ## Recently shipped
 
+<!-- portfolio-entry:polymarket-bot/commit/1f10798 -->
+### Detectors that investigate without being asked
+
+Most monitoring tools wait for a question. This commit turns that around: a layer of detectors now runs its own investigation continuously, scanning prediction-market conditions for changes that meet criteria worth acting on — without anyone deciding when to look.
+
+The practical consequence is that the system catches meaningful shifts between check-ins rather than only at them. The detection logic is also structured to grow more sophisticated over time without requiring the surrounding pipeline to be rebuilt each time a new signal is added.
+
+- Proactive detection: flags market changes before a human thinks to check
+- Designed so new detection rules slot in without rewiring the pipeline
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/1f10798 -->
+
 ## Stack notes
