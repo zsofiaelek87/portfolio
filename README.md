@@ -12,7 +12,7 @@ Paper-trade strategies and track airdrop opportunities on blockchain via Telegra
 
 Two Hungarian study applications managed from a single GitHub repository and deployed on Firebase
 
-<sub>TypeScript — 2 write-ups</sub>
+<sub>TypeScript — 3 write-ups</sub>
 
 ### [Short Videos](projects/shortvideos.md)
 
