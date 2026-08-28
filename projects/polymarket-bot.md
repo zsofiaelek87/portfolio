@@ -9,6 +9,19 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/6ebc3be -->
+### Fixing the spread that was skewing every fill
+
+On a prediction market, the "spread" is the gap between the price you can buy at and the price you can sell at — and if a bot triggers its trades at the edges of that gap, the gap itself quietly works against every single position. This commit moves the trigger point to the midprice, the true centre between those two extremes, so the bot is no longer paying a hidden tax on its own activity.
+
+Small as it sounds, a skewed entry compounds across many trades. Fixing it at the trigger level means the correction applies automatically to everything the bot does from that point forward.
+
+- Entry logic now references the midprice, removing systematic spread bias
+- One fix propagates across all future trades without per-trade adjustments
+
+<sub>Python · Polymarket</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/6ebc3be -->
+
 <!-- portfolio-entry:polymarket-bot/commit/d68b94c -->
 ### Memory that only records what it knew
 
