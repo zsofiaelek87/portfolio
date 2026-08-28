@@ -9,6 +9,17 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/c673381 -->
+### A bot that quotes the side nobody wants
+
+In a two-sided market, a bot naturally accumulates whichever contract is easy to sell and runs short of the one everyone wants. The naive fix is to pull back from the imbalanced side. This commit does the opposite: when inventory tilts, the bot shades its price on the *missing* leg toward the midpoint — making it more attractive — rather than pushing the surplus leg further away. The result is a position that self-corrects through normal trading flow, without the bot ever stepping back from the market to rebalance manually.
+
+- Inventory imbalance is corrected by attracting trades, not by retreating from them
+- Skew logic is inverted: the underweight side gets the better price, automatically
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/c673381 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/6ebc3be -->
 ### Fixing the spread that was skewing every fill
 
