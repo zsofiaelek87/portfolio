@@ -9,6 +9,19 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/f5af653 -->
+### Tracking behaviour, not every move
+
+Prediction-market bots generate a stream of events, and naively treating every one as significant produces a system that overreacts to noise and misses the patterns that actually matter. This commit shifts how the bot groups and remembers its own activity: rather than stamping a record on each individual action, it keys its memory on stretches of meaningful behaviour — what the system was *doing*, not just what it did last.
+
+The practical consequence is a bot that learns from patterns rather than moments, and stays coherent over time without accumulating clutter it has to reason around.
+
+- Cohort logic groups behaviour into meaningful patterns, not raw event counts
+- Reduces noise so the system responds to what matters, not everything that moves
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/f5af653 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/c673381 -->
 ### A bot that quotes the side nobody wants
 
