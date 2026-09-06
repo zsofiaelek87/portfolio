@@ -24,7 +24,7 @@ _No description yet._
 
 _No description yet._
 
-<sub>TypeScript — 3 write-ups</sub>
+<sub>TypeScript — 4 write-ups</sub>
 
 ### [RankWise](projects/rankwise.md)
 
@@ -36,7 +36,7 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 _No description yet._
 
-<sub>Python — 7 write-ups</sub>
+<sub>Python — 8 write-ups</sub>
 
 ### [Marcus Edge](projects/marcusedge.md)
 
