@@ -161,6 +161,19 @@ Encoding that accounting in software means the exposure is visible every time th
 
 ## Recently shipped
 
+<!-- portfolio-entry:polymarket-bot/commit/7a56a8f -->
+### A daily briefing the bot writes about itself
+
+Once a day, the system reads back through its own evidence — the signals it has gathered, the positions it holds — and produces a plain recommendation about what to do next. That recommendation is allowed to propose a direction, but it cannot touch the numerical thresholds that control how aggressively the bot acts. Proposing and adjusting are kept as separate powers on purpose.
+
+The consequence is a reviewable opinion that cannot quietly rewrite its own risk settings on the way out.
+
+- Self-review cycle reads evidence and surfaces a next action automatically
+- Proposing a move and changing risk limits are deliberately separate operations
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/7a56a8f -->
+
 <!-- portfolio-entry:polymarket-bot/commit/f561544 -->
 ### Pricing a whole batch of markets at once
 
