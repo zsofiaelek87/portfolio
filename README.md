@@ -42,7 +42,7 @@ _No description yet._
 
 _No description yet._
 
-<sub>7 write-ups</sub>
+<sub>8 write-ups</sub>
 
 ### [Hyperliquid Equity Bot](projects/hyperliquid-equity-bot.md)
 
