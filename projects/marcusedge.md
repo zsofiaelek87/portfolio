@@ -16,6 +16,19 @@ Launch-and-dump is a pattern where a project generates artificial excitement, at
 
 ## How it works
 
+<!-- portfolio-entry:marcusedge/commit/db8642f -->
+### Editorial opinions that must show their work
+
+Before any editorial judgment leaves the system, it has to cite between one and four pieces of evidence — specific sources it can actually point to. That constraint is baked into the data structure itself, not left as a guideline someone might follow or forget. A claim with no citation attached is structurally invalid; the system won't let it through.
+
+The practical consequence is that every output is a argued position, not an assertion. Readers can check the reasoning; auditors can trace it; and the system cannot produce confident-sounding conclusions that float free of the material that should support them.
+
+- Citation count enforced at the schema level, not as a style rule
+- Between one and four sources required — not optional, not unbounded
+
+<sub>JSON Schema · TypeScript</sub>
+<!-- /portfolio-entry:marcusedge/commit/db8642f -->
+
 ## Recently shipped
 
 <!-- portfolio-entry:marcusedge/commit/cc8705c -->
