@@ -9,6 +9,19 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/faef95c -->
+### When the strategy loses, find exactly where
+
+Losing on a trade has three distinct explanations: the signal was wrong, the entry was bad, or the exit was mishandled. Blaming the wrong one leads to the wrong fix. This commit establishes exactly where in the sequence value was leaking — not at pair completion, which was working correctly, but earlier, at the moment the position was acquired.
+
+A system that can tell those failure modes apart does not patch the exit when the problem lives in the fill. That precision is what makes the diagnosis worth having.
+
+- Separates fill-time loss from exit-time loss before any fix is applied
+- Prevents misdiagnosis from producing a confident but incorrect correction
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/faef95c -->
+
 <!-- portfolio-entry:polymarket-bot/commit/f5af653 -->
 ### Tracking behaviour, not every move
 
