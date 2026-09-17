@@ -16,6 +16,19 @@ Launch-and-dump is a pattern where a project generates artificial excitement, at
 
 ## How it works
 
+<!-- portfolio-entry:marcusedge/commit/41886f2 -->
+### A trade rule that lives in the code
+
+Before this system can act on a prediction market question — a bet on a real-world outcome — it must locate a specific, comparable study and confirm which arm of that study applies. The binding happens in code, not in a document someone might ignore. If no qualifying evidence exists, the question is silently excluded. If the evidence exists, the comparison is explicit and traceable.
+
+The practical consequence: the system cannot argue itself into a position it cannot support. Discipline by structure rather than by reminder.
+
+- Each question is linked to a specific evidence arm before any action is taken
+- Questions without qualifying evidence are excluded automatically, not deferred
+
+<sub>Python · Prediction Markets</sub>
+<!-- /portfolio-entry:marcusedge/commit/41886f2 -->
+
 <!-- portfolio-entry:marcusedge/commit/db8642f -->
 ### Editorial opinions that must show their work
 
