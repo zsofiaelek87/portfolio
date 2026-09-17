@@ -26,6 +26,19 @@ The gating logic now requires five years of volatility history to confirm the tr
 
 ## Recently shipped
 
+<!-- portfolio-entry:deribit-options-bot/commit/01e5d44 -->
+### Data a study needs, or a clear refusal
+
+Options volatility research lives or dies on having the right historical price index — the baseline record of where an asset traded over time. Before this commit, a missing index meant the long-gamma study (a strategy that profits from large price swings) would either run on incomplete data or fail in a way that was hard to diagnose. Now it fetches exactly what it needs upfront, and if that data is unavailable, it stops and says so clearly rather than continuing silently with a gap.
+
+A system that refuses to proceed on bad inputs is more trustworthy than one that proceeds and quietly gets it wrong.
+
+- Study-critical data fetched explicitly, not assumed to be present
+- Missing inputs produce a clear failure, not silent bad output
+
+<sub>Python · Telegram</sub>
+<!-- /portfolio-entry:deribit-options-bot/commit/01e5d44 -->
+
 <!-- portfolio-entry:deribit-options-bot/commit/cb37e74 -->
 ### Measuring volatility premium instead of assuming it
 
