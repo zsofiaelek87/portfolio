@@ -9,6 +9,19 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/4dda268 -->
+### Predicting the past is cheating
+
+A regime model — a layer that classifies whether the market is currently trending, choppy, or shifting — is only honest if it makes its call using information that existed at the time, not information from afterward. The first version of this bot's regime classifier had a subtle flaw: it was sorting historical periods using data that had not yet arrived, which made backtests look cleaner than any live deployment ever could.
+
+This commit makes the split causal — meaning each moment in the historical record is labeled using only what the bot could have known then. The consequence is unglamorous but important: the strategy now trains on a truthful picture of the past, so its confidence in live conditions is earned rather than borrowed from the future.
+
+- Backtests now reflect only information the bot could have had at the time
+- Causal labeling prevents historical performance from flattering live results
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/4dda268 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/faef95c -->
 ### When the strategy loses, find exactly where
 
