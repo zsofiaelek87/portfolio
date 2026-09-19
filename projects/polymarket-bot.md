@@ -9,6 +9,19 @@
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/46d09a1 -->
+### When volatility itself becomes the signal
+
+Prediction markets publish prices. Buried inside those prices is implied volatility — a market's collective guess about how uncertain an outcome is, expressed as a number rather than a feeling. This commit corrects a misclassification: an event the system had been treating as a straightforward price move was actually a volatility event, and the gates — the conditions the bot checks before acting — were reading the wrong signal entirely.
+
+The fix matters because a system trading on the wrong input is not just inefficient; it is confident in the wrong direction. Correcting the event type means the bot's decisions are now grounded in what the market is actually expressing.
+
+- Distinguishes price-driven events from uncertainty-driven events before acting
+- Entry gates now read the signal the market is actually publishing
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/46d09a1 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/4dda268 -->
 ### Predicting the past is cheating
 
