@@ -27,4 +27,17 @@ The practical consequence is that every strategy earns its place through evidenc
 
 ## Recently shipped
 
+<!-- portfolio-entry:binance-carry-bot/commit/f06eac7 -->
+### A bot that reads its own track record and decides what to do next
+
+Once a day, the bot reviews its own trading history — every position it opened, every one it declined, and the reasoning behind each call — and produces a plain verdict on what that evidence suggests. This is the kind of reflective audit a disciplined human trader would do over coffee on a Sunday morning, except it runs automatically and without anyone sitting down to do it.
+
+The value is in closing a loop that most automated systems leave open: the bot is not just acting on the market, it is accountable to its own past behavior, and the output is actionable rather than decorative.
+
+- Daily self-review pass surfaces patterns a human would otherwise miss
+- Conclusions drawn from the bot's own logged evidence, not external signals
+
+<sub>Python · Telegram</sub>
+<!-- /portfolio-entry:binance-carry-bot/commit/f06eac7 -->
+
 ## Stack notes
