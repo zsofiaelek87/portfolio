@@ -174,6 +174,19 @@ Encoding that accounting in software means the exposure is visible every time th
 
 ## Recently shipped
 
+<!-- portfolio-entry:polymarket-bot/commit/e7c5267 -->
+### A circuit breaker that learned to step aside
+
+Prediction-market bots often use a circuit breaker — an automatic stop that halts activity when conditions look dangerous — but a breaker that fires too eagerly can block trades it should allow. This commit draws a precise line: the breaker still guards against genuine risk, but it now recognises a specific class of position (one that profits when market uncertainty rises, rather than when a particular outcome wins) and holds its lane open rather than shutting it down.
+
+The result is a bot that protects itself without protecting itself into inaction.
+
+- Circuit breaker now distinguishes protective halts from unnecessary interference
+- First long-volatility position held without manual override
+
+<sub>Python · Prediction Markets</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/e7c5267 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/7a56a8f -->
 ### A daily briefing the bot writes about itself
 
