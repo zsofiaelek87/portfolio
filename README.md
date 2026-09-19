@@ -78,7 +78,7 @@ Trade cryptocurrency options volatility risk premium using defined-risk structur
 
 Harvest cryptocurrency funding-rate premiums through delta-neutral positions via Telegram control
 
-<sub>Python — 1 write-up</sub>
+<sub>Python — 2 write-ups</sub>
 
 ### [Airbnb Pricer](projects/airbnb-pricer.md)
 
