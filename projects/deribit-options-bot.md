@@ -26,6 +26,19 @@ The gating logic now requires five years of volatility history to confirm the tr
 
 ## Recently shipped
 
+<!-- portfolio-entry:deribit-options-bot/commit/ae3c324 -->
+### A daily review the bot writes for itself
+
+Once a day, the bot reads its own trading history — the positions it opened, what happened to them, and what the outcomes suggest — and produces a structured verdict on what to do next. Rather than asking a human to sift through logs and draw conclusions, the system turns its own evidence into a recommendation.
+
+The practical consequence is a tighter feedback loop: the bot is not just acting on market conditions but actively learning from its own track record, on a schedule, without anyone having to prompt it.
+
+- Self-review runs daily from the bot's own position history
+- Output is a concrete recommendation, not a raw log dump
+
+<sub>Python · Telegram</sub>
+<!-- /portfolio-entry:deribit-options-bot/commit/ae3c324 -->
+
 <!-- portfolio-entry:deribit-options-bot/commit/01e5d44 -->
 ### Data a study needs, or a clear refusal
 
