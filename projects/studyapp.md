@@ -1,7 +1,5 @@
 # Study App
 
-> Two Hungarian study applications managed from a single GitHub repository and deployed on Firebase
-
 **Stack:** TypeScript
 
 <!-- Entries below are drafted from private repositories by the portfolio agent
@@ -9,36 +7,36 @@
 
 <!-- portfolio:overview -->
 
-> Two Firebase-hosted Hungarian study apps for kids, managed from one monorepo
+> Two Firebase-hosted study apps for kids, managed from a single monorepo
 
 ## What it is
 
-Children studying Hungarian reading and primary-school science need practice that fits their exact curriculum and age. This monorepo delivers two separate web apps—one per child—each with age-appropriate content, offline support, and a PIN-protected parent dashboard. A solo builder maintains both from a single GitHub repository without ever duplicating CI/CD work.
+Keeping young learners engaged with curriculum-aligned practice is hard to sustain without purpose-built tooling. This monorepo delivers two separate Hungarian study apps—one covering third-grade science, one covering early reading—each tailored to a specific child's age and subject. A parent dashboard protected by a PIN sits behind each app, and content written once deploys live to both apps instantly.
 
 ## How it works
 
-1. Content is authored once per app using lesson files in each sub-app directory.
-2. A push to main triggers path-filtered GitHub Actions workflows that deploy only the changed app.
-3. Firebase credentials and the parent-dashboard PIN are injected at build time from GitHub Secrets, keeping all sensitive values out of source.
-4. Each app is built and deployed to its own Firebase Hosting project, keeping the two children's data entirely separate.
-5. Service workers enable both apps to run fully offline on any device after the first load.
-6. A daily mission flow surfaces the next lesson automatically, so children always know where to start.
+1. Content is authored once inside each sub-app and stored in a format that renders identically in browser and offline.
+2. A daily mission flow guides each learner through lessons step by step, surfacing quiz games and richer lesson worlds along the way.
+3. AI-generated content populates lessons, keeping material fresh without manual authoring for every topic.
+4. On a push to main, path-filtered GitHub Actions workflows detect which sub-app changed and trigger only its deployment.
+5. Each app builds and deploys independently to its own Firebase Hosting project using secrets scoped per app.
+6. A PIN-gated parent dashboard is injected at build time via GitHub Secrets, keeping credentials out of source control.
 
 ## What makes it interesting
 
-- Path-filtered CI/CD: changes under orsi-studyapp/** and matyi-studyapp/** each trigger a dedicated deploy workflow, so one child's update never risks the other's deployment.
-- Per-app Firebase isolation: each app targets a separate Firebase project with its own credentials, preventing any cross-contamination of data or configuration.
-- PIN-gated parent dashboard baked in as a first-class feature, with the PIN injected via GitHub Secrets rather than hardcoded.
-- AI-generated curriculum content feeding a structured quiz engine, with lessons written once and propagated everywhere instantly.
-- Offline-first architecture ensures the apps remain fully usable on any device regardless of connectivity.
+- Monorepo with per-app CI: path filters in deploy-orsi.yml and deploy-matyi.yml ensure a change in one sub-app never triggers an unnecessary rebuild of the other.
+- Credentials injected at build time via prefixed GitHub Secrets (ORSI_ / MATYI_), giving each Firebase project strict isolation with no shared service account.
+- Offline-first architecture: both apps work without a network connection on any device, with a configurable storage mode (local vs. Firebase) toggled per deployment.
+- AI-generated lesson content paired with a daily mission flow designed to sustain engagement across age groups as different as 7 and 10.
+- Parent dashboard access controlled by a build-time PIN rather than a user account system, keeping the auth surface minimal for a household-scale tool.
 
 ## Stack
 
-TypeScript · Firebase Hosting · GitHub Actions
+TypeScript · Firebase Hosting · Firebase (Firestore / Storage) · GitHub Actions
 
 <!-- /portfolio:overview -->
 
-## What makes it interesting
+## Recently shipped
 
 <!-- portfolio-entry:studyapp/commit/a4f5d6f -->
 ### Two apps, one codebase, AI-generated content
@@ -52,8 +50,6 @@ Because both Hungarian study apps share a single codebase and the same data laye
 
 <sub>TypeScript · Firebase · Firestore · GitHub Actions</sub>
 <!-- /portfolio-entry:studyapp/commit/a4f5d6f -->
-
-## Recently shipped
 
 <!-- portfolio-entry:studyapp/commit/eb51e98 -->
 ### A quiz game built for Hungarian third-graders
