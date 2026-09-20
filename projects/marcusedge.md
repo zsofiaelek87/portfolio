@@ -3,18 +3,34 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
 
-<!-- portfolio-entry:marcusedge/commit/388544d -->
-### Forensics methodology for spotting pump-and-dump schemes
+> A self-running market research system that surfaces manipulation and tracks trading logic
 
-Launch-and-dump is a pattern where a project generates artificial excitement, attracts buyers, and then collapses — usually before most people realize what happened. Marcus Edge publishes a structured methodology for reconstructing that sequence after the fact: what signals to look for, in what order, and how to distinguish a genuine failure from a deliberate exit. Making that reasoning explicit and replicable is the work; anyone can have an opinion, but a documented method can be taught, challenged, and improved.
+## What it is
 
-- Structured forensic framework, not just a checklist of red flags
-- Designed to be replicable — judgment made explicit and teachable
-<!-- /portfolio-entry:marcusedge/commit/388544d -->
+Retail traders and independent researchers spend hours each day scanning for suspicious price action and managing trade rules across scattered tools. This system centralises that work: it runs daily market scans unattended, flags pump-and-dump patterns using a documented forensics methodology, and keeps trading rules, editorial opinions, and research dashboards in one auditable place. It is built and maintained by a single developer.
 
 ## How it works
+
+1. A daily screener runs on a schedule without manual intervention, pulling market data across a watchlist.
+2. An automated scanner reconstructs exit patterns to identify deliberate market manipulation.
+3. Forensics logic scores symbols against known pump-and-dump signatures and surfaces candidates for review.
+4. Trade rules are encoded directly in the system so decisions are versioned and traceable, not just notes.
+5. Editorial opinions are published with their supporting data attached, forcing conclusions to show their work.
+6. A unified dashboard combines book journal entries, bot status, and research views with fine-grained move controls.
+
+## What makes it interesting
+
+- Forensics methodology for pump-and-dump detection is explicit and documented, not a black-box score.
+- Trade rules live in code rather than spreadsheets, making decision logic auditable and diff-able over time.
+- Editorial opinions are structurally required to expose their underlying data before being published.
+- The automated scanner reconstructs a deliberate market exit sequence rather than flagging simple price spikes.
+- Planning documents are converted into tracked system logic, closing the gap between intent and implementation.
+
+<!-- /portfolio:overview -->
+
+## Recently shipped
 
 <!-- portfolio-entry:marcusedge/commit/41886f2 -->
 ### A trade rule that lives in the code
@@ -42,7 +58,14 @@ The practical consequence is that every output is a argued position, not an asse
 <sub>JSON Schema · TypeScript</sub>
 <!-- /portfolio-entry:marcusedge/commit/db8642f -->
 
-## Recently shipped
+<!-- portfolio-entry:marcusedge/commit/388544d -->
+### Forensics methodology for spotting pump-and-dump schemes
+
+Launch-and-dump is a pattern where a project generates artificial excitement, attracts buyers, and then collapses — usually before most people realize what happened. Marcus Edge publishes a structured methodology for reconstructing that sequence after the fact: what signals to look for, in what order, and how to distinguish a genuine failure from a deliberate exit. Making that reasoning explicit and replicable is the work; anyone can have an opinion, but a documented method can be taught, challenged, and improved.
+
+- Structured forensic framework, not just a checklist of red flags
+- Designed to be replicable — judgment made explicit and teachable
+<!-- /portfolio-entry:marcusedge/commit/388544d -->
 
 <!-- portfolio-entry:marcusedge/commit/cc8705c -->
 ### Automated scanner that reconstructs a deliberate market exit
@@ -118,5 +141,3 @@ Every day, without being asked, Marcus Edge wakes up on its own dedicated runner
 
 <sub>Deribit · GitHub Actions</sub>
 <!-- /portfolio-entry:marcusedge/commit/030c88a -->
-
-## Stack notes
