@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
+> A free, local sales CRM for IT recruiters expanding into new markets
 
 ## What it is
 
-Recruiters expanding into new markets waste time juggling spreadsheets, guessing who to contact, and tracking whether anyone replied. This system gives a solo sales manager a scored lead pipeline, contact discovery, and a controlled email outreach queue — all running locally or on a free Firebase deployment. No SaaS subscriptions, no data leaving the machine unless you choose to send it.
+Finding the right hiring managers at the right companies, then reaching them without sounding like a bot, takes more manual work than most recruitment tools acknowledge. Recruit Lead Engine is a self-hosted pipeline that scores company leads, surfaces the right contacts, and manages outreach sequencing — all without paid APIs or third-party CRMs. It is built for a solo recruiter or small agency doing deliberate, high-quality outreach into a new geography.
 
 ## How it works
 
-1. Companies are added via a JSON import file and scanned to extract hiring signals such as open role count, role age, and tech stack difficulty.
-2. A scoring engine rates each company 0–100 and assigns it to a priority tier — contact today, this week, review later, or ignore.
-3. A daily action queue is generated from the scored leads, telling the sales manager exactly who to reach out to and in what order.
-4. A local contact-finder script identifies the right people at each company and adds them to a contacts list.
-5. Outreach drafts are generated from templates and queued for review in a hosted Firebase UI before any email is sent.
-6. Emails are dispatched in small batches through a local PowerShell script via Outlook Web, with safeguards preventing duplicate sends and enforcing quiet periods and stop rules.
+1. Companies are imported manually via a JSON file and scored 0–100 across signals such as open role count, role age, tech-stack difficulty, and company size.
+2. A daily action queue is generated from the scores, surfacing A-tier leads to contact today and B-tier leads for the week.
+3. A local contact-finder script identifies people to reach at each company when names are missing from the data.
+4. Outreach drafts are generated from templates and queued in a hosted Firebase UI for review before anything is sent.
+5. Approved emails are sent in small batches from a local PowerShell script through Outlook Web, keeping the sender identity natural.
+6. Reply handling, follow-up timing, and stop conditions are managed by the engine so no contact receives duplicate or ill-timed messages.
 
 ## What makes it interesting
 
-- Deduplication is enforced at the engine level — a dedicated rule prevents the same email from being sent twice to any recipient regardless of queue state.
-- The outreach queue includes built-in guardrails for contact discovery, capping how many contacts are queued per company to avoid over-contacting a single organisation.
-- Follow-up logic knows when to stop: a tiered rule set halts sequences based on reply state and attempt count rather than relying on manual triage.
-- Draft validation blocks outreach emails from leaving the queue if they fail formatting or completeness checks — drafts that look wrong stay queued.
-- A stalled-batch recovery path was designed explicitly so that a single unresponsive contact or expired Outlook session does not halt the rest of the pipeline.
+- Built-in deduplication ensures the engine never sends the same email twice to a recipient, enforced at the queue level before dispatch.
+- Queue guardrails in the contact-discovery step cap outreach volume per company, protecting sender reputation and recipient experience.
+- A quiet-rule layer suppresses outreach automatically under defined conditions — the engine knows when to stay silent without manual intervention.
+- Follow-up sequences have explicit stop conditions baked in, so threads terminate cleanly rather than requiring manual cancellation.
+- Outreach drafts are validated before release; the system refuses to dispatch messages that fail a correctness check, not just a formatting one.
 
 ## Stack
 
-TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
+TypeScript · Next.js · Firebase Hosting · Firestore · PowerShell · Python · Outlook Web
 
 <!-- /portfolio:overview -->
 
