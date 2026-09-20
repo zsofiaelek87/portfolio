@@ -7,25 +7,25 @@
 
 <!-- portfolio:overview -->
 
-> Automated carry-trade executor that self-evaluates its own performance history
+> Automated carry-trade bot that reviews its own history to size and promote positions
 
 ## What it is
 
-Carry trading on perpetual futures requires constant monitoring of funding rates and disciplined position sizing — work that is easy to automate badly. This bot manages the full cycle of a carry trade and, crucially, reads its own historical results to inform the next decision. It is built for a solo trader who wants execution and self-correction running without manual intervention.
+Carry trades on crypto perpetuals require constant monitoring of funding rates, position sizing, and performance review — work that compounds in complexity as the number of open legs grows. This bot handles that loop autonomously, tracking its own trade history and using that record to inform the next decision. It is built for a solo trader who wants systematic execution without a full quant team.
 
 ## How it works
 
-1. Monitors funding rates and spot-futures spreads to identify carry opportunities.
-2. Opens and sizes positions according to rules derived from past performance.
-3. Logs each trade and its outcome to a persistent track record.
-4. Re-reads that track record to evaluate whether the current trading arm has earned continued operation.
-5. Promotes or demotes the active strategy based on its own measured results.
+1. Polls funding rate and market data from the exchange on a scheduled cycle.
+2. Evaluates current open positions against carry thresholds to decide whether to hold, adjust, or close.
+3. Reads its own historical trade log to assess recent performance before acting.
+4. Applies a promotion mechanism that scales up a trading arm when its track record justifies larger exposure.
+5. Submits orders and records outcomes back to the log to close the feedback loop.
 
 ## What makes it interesting
 
-- Strategy self-evaluation: the bot reads its own trade log and uses the results to gate future activity, rather than running open-loop.
-- Earned promotion model: a trading arm must demonstrate performance before being allowed to scale up, reducing runaway losses from a misconfigured strategy.
-- Autonomous decision loop: promotion and demotion logic runs without manual review, making the feedback cycle part of the execution engine rather than an offline process.
+- Self-referential decision layer: the bot reads its own trade record rather than relying solely on live market signals, making past performance a first-class input.
+- Promotion mechanic that ties position-size authority to earned track record, acting as a built-in risk governor.
+- Feedback loop architecture where every executed order writes back to the history the next decision cycle will read.
 
 ## Stack
 
