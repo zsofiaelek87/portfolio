@@ -10,7 +10,7 @@ A Python bot that measures on-chain liquidity and executes informed trading deci
 
 ### [Study App](projects/studyapp.md)
 
-Two Firebase-hosted study apps for kids, managed from a single monorepo
+A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
 
 <sub>TypeScript — 6 write-ups</sub>
 
