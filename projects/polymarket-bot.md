@@ -7,28 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> An automated market-maker for Polymarket prediction markets, written in Python
+> An automated market-maker for Polymarket prediction markets, built in Python
 
 ## What it is
 
-Prediction markets are thin and fast-moving, and naive quoting strategies get picked off by informed traders or drift into bad fills. This bot acts as an automated market-maker on Polymarket, continuously quoting both sides of binary contracts. It is built for a solo operator who wants edge from process discipline rather than raw speed.
+Prediction markets reward accurate probability estimates, but quoting both sides of a market exposes a bot to manipulation, stale signals, and its own blind spots. This bot acts as an automated market-maker on Polymarket, managing positions and spreads across multiple contracts. It is a solo research and engineering project focused on making the quoting strategy robust rather than just profitable on paper.
 
 ## How it works
 
-1. Scan open markets and identify contracts where the current spread or volume creates a quoting opportunity.
-2. Price each side of a contract using a model that accounts for volatility signals and known behavioural biases.
-3. Submit resting quotes on the side with no natural liquidity, adjusting the spread to cover adverse-selection risk.
-4. Monitor open positions in real time, with each position carrying its own audit trail for later review.
-5. Run a suite of detectors at every digest layer to catch manipulation, stale data, and model drift.
-6. Grade completed trades by reasoning quality, not just outcome, to identify where the strategy actually broke down.
+1. The bot scans open Polymarket contracts and identifies lanes worth quoting based on volatility and liquidity signals.
+2. A pricing model sets bid and ask quotes, explicitly assuming counterparties may attempt to exploit it.
+3. Detectors embedded at every digest layer flag anomalies—manipulation attempts, stale data, or known biases—before an order is placed.
+4. Each position is opened with its own audit trail, recording only information the bot had available at decision time.
+5. After fills, the bot grades its reasoning process and not just the outcome, then attributes losses to specific failure modes.
+6. Spread and lane parameters are adjusted when post-mortem analysis reveals a systematic skew or a quiet lane worth reviving.
 
 ## What makes it interesting
 
-- Adversarial pricing model: the bot is explicitly designed on the assumption that it will be deceived, building manipulation resistance into quote generation rather than treating it as an edge case.
-- Memory architecture records only what the bot knew at decision time, preventing look-ahead contamination when reviewing historical behaviour.
-- Per-position paper trails make post-hoc attribution precise — losses are diagnosed at the exact decision point, not blamed on general market conditions.
-- Detectors are wired into every digest layer, so data-quality checks run continuously rather than as a periodic audit.
-- Spread miscalibration was caught and corrected after it was traced as the root cause skewing every fill — a concrete example of the debugging loop the system supports.
+- Epistemically honest backtesting: the memory layer records only what the bot knew at decision time, preventing look-ahead leakage ('Predicting the past is cheating').
+- Adversarial pricing model that treats incoming order flow as potentially deceptive by design ('A pricing bot that assumes it will be deceived').
+- Anomaly detectors wired into every digest layer rather than bolted on as a post-processing step, so bad signals are caught before they reach the order logic.
+- Per-position paper trails that make loss attribution exact—down to the specific decision point where a strategy failed ('When the strategy loses, find exactly where').
+- Reasoning-level grading separates whether the bot's logic was sound from whether the outcome was good, enabling principled strategy updates ('Grading the reasoning, not just the result').
 
 ## Stack
 
