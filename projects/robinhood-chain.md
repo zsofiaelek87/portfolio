@@ -1,7 +1,5 @@
 # Robinhood Chain Bot
 
-> Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
-
 **Stack:** Python
 
 <!-- Entries below are drafted from private repositories by the portfolio agent
@@ -9,28 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> A Python bot that measures real DEX liquidity and fee data to inform trading decisions
+> A Python bot that measures DeFi liquidity and timing signals for on-chain trading
 
 ## What it is
 
-Estimating liquidity pool conditions from indirect signals leads to bad trades. This bot measures actual on-chain state—pool sizes, fee flows, and position earnings—so a solo operator can make decisions from real numbers rather than guesses. It is built for someone running an automated trading strategy on a decentralized exchange.
+Automated trading decisions on decentralized exchanges require real-time data that headline numbers routinely misrepresent. This bot measures liquidity pools, fee flows, and position earnings directly from on-chain activity rather than estimating them. It is built for a solo operator who needs reliable signals and persistent state across restarts.
 
 ## How it works
 
-1. Scans liquidity pools by direct measurement rather than estimation.
-2. Reads actual transaction flow to determine which fee tiers are active.
-3. Calculates what a specific liquidity position is genuinely earning.
-4. Detects price gaps in the order book that carry real signal.
-5. Publishes dashboard snapshots on a controlled schedule rather than on every tick.
-6. Persists all history so context survives a full cold restart.
+1. Pool liquidity and fee activity are measured from actual on-chain flow rather than derived from surface-level metrics.
+2. Price gaps are evaluated for statistical significance before being treated as actionable signals.
+3. Temporal patterns such as weekend behavior are encoded so the bot adjusts its logic by time of week.
+4. Liquidity positions are pre-registered and tracked to calculate what each position actually earns.
+5. Dashboard snapshots are published on a controlled schedule to decouple reporting from live decision logic.
+6. All state is persisted so history and context survive a full cold restart.
 
 ## What makes it interesting
 
-- State survives cold restarts: history is persisted so the bot resumes without losing context or recalculating from scratch.
-- Fee tier selection is driven by measuring actual transaction flow through each tier, not by assumptions.
-- Pool liquidity is measured directly rather than estimated, removing a common source of systematic error.
-- The bot is taught to treat weekend market behaviour as a distinct regime, avoiding weekday calibrations on low-volume sessions.
-- Price gap detection is filtered to flag only gaps that carry genuine signal, reducing noise in the decision pipeline.
+- Replaces estimated liquidity figures with direct pool measurement to avoid acting on misleading headline numbers.
+- Encodes calendar-aware logic so the bot distinguishes weekend market behavior from weekday patterns.
+- Pre-registration step for liquidity positions enables precise per-position earnings tracking rather than aggregate approximation.
+- Fee tier selection is resolved by measuring actual flow through each tier, not by assumption.
+- State persistence is designed so a cold restart loses no decision-relevant history.
 
 ## Stack
 
@@ -38,7 +36,7 @@ Python
 
 <!-- /portfolio:overview -->
 
-## How it works
+## Recently shipped
 
 <!-- portfolio-entry:robinhood-chain/commit/6cd0a82 -->
 ### History that survives a cold restart
@@ -63,8 +61,6 @@ The point is not to expose a scandal but to make the system's decisions honest: 
 
 <sub>Python · Telegram · Blockchain</sub>
 <!-- /portfolio-entry:robinhood-chain/commit/377ebee -->
-
-## Recently shipped
 
 <!-- portfolio-entry:robinhood-chain/commit/e4f0f79 -->
 ### The metric that actually drives the decision
