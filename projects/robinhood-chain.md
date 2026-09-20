@@ -7,28 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> A Python bot that measures DeFi liquidity and timing signals for on-chain trading
+> A Python bot that measures on-chain liquidity and executes informed trading decisions
 
 ## What it is
 
-Automated trading decisions on decentralized exchanges require real-time data that headline numbers routinely misrepresent. This bot measures liquidity pools, fee flows, and position earnings directly from on-chain activity rather than estimating them. It is built for a solo operator who needs reliable signals and persistent state across restarts.
+Automated trading systems often act on headline metrics that misrepresent actual market conditions—stale prices, estimated pool sizes, and fee assumptions that don't reflect real flow. This bot is built for a solo operator who needs decisions grounded in measured, not assumed, on-chain data. It trades on a decentralized exchange by reading liquidity pools, fee tiers, and position earnings directly from the chain.
 
 ## How it works
 
-1. Pool liquidity and fee activity are measured from actual on-chain flow rather than derived from surface-level metrics.
-2. Price gaps are evaluated for statistical significance before being treated as actionable signals.
-3. Temporal patterns such as weekend behavior are encoded so the bot adjusts its logic by time of week.
-4. Liquidity positions are pre-registered and tracked to calculate what each position actually earns.
-5. Dashboard snapshots are published on a controlled schedule to decouple reporting from live decision logic.
-6. All state is persisted so history and context survive a full cold restart.
+1. Bot state is persisted so that a cold restart resumes without losing context or position history.
+2. On-chain liquidity pools are measured directly rather than estimated from external feeds.
+3. Actual transaction flow through each fee tier is observed to answer routing decisions.
+4. Price gaps are evaluated against measured thresholds to filter out noise from meaningful signals.
+5. Liquidity position earnings are calculated from real on-chain data, not approximations.
+6. Dashboard snapshots are published on a controlled schedule to avoid acting on stale displays.
 
 ## What makes it interesting
 
-- Replaces estimated liquidity figures with direct pool measurement to avoid acting on misleading headline numbers.
-- Encodes calendar-aware logic so the bot distinguishes weekend market behavior from weekday patterns.
-- Pre-registration step for liquidity positions enables precise per-position earnings tracking rather than aggregate approximation.
-- Fee tier selection is resolved by measuring actual flow through each tier, not by assumption.
-- State persistence is designed so a cold restart loses no decision-relevant history.
+- Persistent history survives cold restarts, preventing the bot from losing its decision context across process interruptions.
+- Fee tier selection is driven by measuring actual flow rather than accepting default or estimated values.
+- Headline metrics are cross-checked against underlying data to catch cases where a reported number quietly misrepresents conditions.
+- Time-of-week awareness is encoded explicitly so weekend market behavior is treated as a distinct regime.
+- Pre-registration logic for liquidity positions gates entry before a position is live, reducing race conditions at open.
 
 ## Stack
 
