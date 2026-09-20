@@ -4,13 +4,13 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
+A Python bot that measures DeFi liquidity and timing signals for on-chain trading
 
 <sub>Python — 10 write-ups</sub>
 
 ### [Study App](projects/studyapp.md)
 
-Two Hungarian study applications managed from a single GitHub repository and deployed on Firebase
+Two Firebase-hosted Hungarian study apps for kids, managed from one monorepo
 
 <sub>TypeScript — 6 write-ups</sub>
 
@@ -22,7 +22,7 @@ _No description yet._
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-_No description yet._
+A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
 
 <sub>TypeScript — 15 write-ups</sub>
 
@@ -40,7 +40,7 @@ _No description yet._
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-_No description yet._
+A self-running market research system that surfaces manipulation and tracks trading logic
 
 <sub>9 write-ups</sub>
 
