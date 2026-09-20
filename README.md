@@ -22,7 +22,7 @@ _No description yet._
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-A free, local sales CRM for IT recruiters expanding into new markets
+A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
 
 <sub>TypeScript — 15 write-ups</sub>
 
@@ -34,7 +34,7 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 ### [Polymarket Bot](projects/polymarket-bot.md)
 
-_No description yet._
+An automated market-maker for Polymarket prediction markets, written in Python
 
 <sub>Python — 24 write-ups</sub>
 
