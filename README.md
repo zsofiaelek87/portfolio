@@ -4,13 +4,13 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-A Python bot that measures DeFi liquidity and timing signals for on-chain trading
+Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
 
 <sub>Python — 10 write-ups</sub>
 
 ### [Study App](projects/studyapp.md)
 
-Two Firebase-hosted Hungarian study apps for kids, managed from one monorepo
+Two Firebase-hosted study apps for kids, managed from a single monorepo
 
 <sub>TypeScript — 6 write-ups</sub>
 
@@ -34,13 +34,13 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 ### [Polymarket Bot](projects/polymarket-bot.md)
 
-An automated market-maker for Polymarket prediction markets, written in Python
+_No description yet._
 
 <sub>Python — 24 write-ups</sub>
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-A self-running market research system that surfaces manipulation and tracks trading logic
+A self-running research and surveillance system for solo market analysis
 
 <sub>9 write-ups</sub>
 
