@@ -4,7 +4,7 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
+A Python bot that measures on-chain liquidity and executes informed trading decisions
 
 <sub>Python — 10 write-ups</sub>
 
