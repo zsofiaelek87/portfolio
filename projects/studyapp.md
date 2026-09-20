@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> Two Firebase-hosted study apps for kids, managed from a single monorepo
+> A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
 
 ## What it is
 
-Keeping young learners engaged with curriculum-aligned practice is hard to sustain without purpose-built tooling. This monorepo delivers two separate Hungarian study apps—one covering third-grade science, one covering early reading—each tailored to a specific child's age and subject. A parent dashboard protected by a PIN sits behind each app, and content written once deploys live to both apps instantly.
+Young children studying Hungarian reading and third-grade science need practice that feels like a game, not a worksheet. This monorepo houses two separate web apps—one per child, one per subject—each with its own Firebase project and parent dashboard. A single repository and shared CI/CD pipeline lets one builder maintain both without duplicating infrastructure.
 
 ## How it works
 
-1. Content is authored once inside each sub-app and stored in a format that renders identically in browser and offline.
-2. A daily mission flow guides each learner through lessons step by step, surfacing quiz games and richer lesson worlds along the way.
-3. AI-generated content populates lessons, keeping material fresh without manual authoring for every topic.
-4. On a push to main, path-filtered GitHub Actions workflows detect which sub-app changed and trigger only its deployment.
-5. Each app builds and deploys independently to its own Firebase Hosting project using secrets scoped per app.
-6. A PIN-gated parent dashboard is injected at build time via GitHub Secrets, keeping credentials out of source control.
+1. Content is authored once inside each sub-app and published instantly to both live URLs.
+2. A daily mission flow guides each learner through lessons step by step.
+3. Quiz interactions run as a game loop tuned for the target age group.
+4. A PIN-protected parent dashboard surfaces progress without exposing the admin surface to kids.
+5. On push to main, path-filtered GitHub Actions workflows deploy only the app whose files changed.
+6. Both apps cache assets for offline use so sessions survive without a connection.
 
 ## What makes it interesting
 
-- Monorepo with per-app CI: path filters in deploy-orsi.yml and deploy-matyi.yml ensure a change in one sub-app never triggers an unnecessary rebuild of the other.
-- Credentials injected at build time via prefixed GitHub Secrets (ORSI_ / MATYI_), giving each Firebase project strict isolation with no shared service account.
-- Offline-first architecture: both apps work without a network connection on any device, with a configurable storage mode (local vs. Firebase) toggled per deployment.
-- AI-generated lesson content paired with a daily mission flow designed to sustain engagement across age groups as different as 7 and 10.
-- Parent dashboard access controlled by a build-time PIN rather than a user account system, keeping the auth surface minimal for a household-scale tool.
+- Path-filtered CI: changes under `orsi-studyapp/**` and `matyi-studyapp/**` trigger independent deploy workflows, so a content edit to one app never risks redeploying the other.
+- Secrets are namespaced per project (`ORSI_` / `MATYI_` prefixes), keeping two Firebase environments isolated inside one repo without leaking credentials across apps.
+- A switchable `STORAGE_MODE` secret (`local` or `firebase`) lets each app run fully offline or against Firestore without a code change.
+- AI-generated content pipeline used to produce lesson material, reducing the per-lesson authoring cost for a solo builder.
+- Lesson worlds are designed for re-engagement: richer environments and a structured daily mission flow address the retention problem common in children's drill apps.
 
 ## Stack
 
-TypeScript · Firebase Hosting · Firebase (Firestore / Storage) · GitHub Actions
+TypeScript · Firebase Hosting · Firebase Firestore · GitHub Actions
 
 <!-- /portfolio:overview -->
 
