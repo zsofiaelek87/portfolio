@@ -1,15 +1,39 @@
 # Binance Carry Bot
 
-> Harvest cryptocurrency funding-rate premiums through delta-neutral positions via Telegram control
-
 **Stack:** Python
 
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
+
+> Automated carry-trade executor that self-evaluates its own performance history
+
+## What it is
+
+Carry trading on perpetual futures requires constant monitoring of funding rates and disciplined position sizing — work that is easy to automate badly. This bot manages the full cycle of a carry trade and, crucially, reads its own historical results to inform the next decision. It is built for a solo trader who wants execution and self-correction running without manual intervention.
 
 ## How it works
+
+1. Monitors funding rates and spot-futures spreads to identify carry opportunities.
+2. Opens and sizes positions according to rules derived from past performance.
+3. Logs each trade and its outcome to a persistent track record.
+4. Re-reads that track record to evaluate whether the current trading arm has earned continued operation.
+5. Promotes or demotes the active strategy based on its own measured results.
+
+## What makes it interesting
+
+- Strategy self-evaluation: the bot reads its own trade log and uses the results to gate future activity, rather than running open-loop.
+- Earned promotion model: a trading arm must demonstrate performance before being allowed to scale up, reducing runaway losses from a misconfigured strategy.
+- Autonomous decision loop: promotion and demotion logic runs without manual review, making the feedback cycle part of the execution engine rather than an offline process.
+
+## Stack
+
+Python
+
+<!-- /portfolio:overview -->
+
+## Recently shipped
 
 <!-- portfolio-entry:binance-carry-bot/commit/944f5ff -->
 ### A trading arm that earns its own promotion
@@ -25,8 +49,6 @@ The practical consequence is that every strategy earns its place through evidenc
 <sub>Python · Binance API · Telegram</sub>
 <!-- /portfolio-entry:binance-carry-bot/commit/944f5ff -->
 
-## Recently shipped
-
 <!-- portfolio-entry:binance-carry-bot/commit/f06eac7 -->
 ### A bot that reads its own track record and decides what to do next
 
@@ -39,5 +61,3 @@ The value is in closing a loop that most automated systems leave open: the bot i
 
 <sub>Python · Telegram</sub>
 <!-- /portfolio-entry:binance-carry-bot/commit/f06eac7 -->
-
-## Stack notes
