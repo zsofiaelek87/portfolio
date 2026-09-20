@@ -1,15 +1,41 @@
 # Deribit Options Bot
 
-> Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
-
 **Stack:** Python
 
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
+
+> Automated options trading bot for Deribit with self-written daily reviews
+
+## What it is
+
+Discretionary options trading on crypto derivatives requires reviewing large amounts of historical data and tracking live volatility conditions consistently — work that is easy to skip and hard to systematize. This bot handles the research and monitoring loop for a solo trader on Deribit, surfacing the information needed to make a position decision or refusing to proceed when the data isn't there. It is built for a single operator who wants discipline enforced by code.
 
 ## How it works
+
+1. Pulls up to five years of historical options data from Deribit before any trade is considered.
+2. Checks whether a requested study has sufficient data and returns a clear refusal if it does not.
+3. Measures realized versus implied volatility to quantify the volatility premium rather than assuming one exists.
+4. Evaluates current market conditions against the historical record to support or reject a trade idea.
+5. Writes a structured daily review of its own activity, positions, and market observations.
+6. Executes or skips orders based on the outcome of that review cycle.
+
+## What makes it interesting
+
+- Five years of historical data are loaded and validated before any trade is risked, making recency bias structurally harder.
+- The bot authors its own daily review, creating a written audit trail of decisions without manual journaling.
+- Data requests return an explicit refusal when a study lacks sufficient history, rather than silently degrading to a smaller sample.
+- Volatility premium is measured from realized versus implied volatility rather than assumed, grounding each trade in current evidence.
+
+## Stack
+
+Python
+
+<!-- /portfolio:overview -->
+
+## Recently shipped
 
 <!-- portfolio-entry:deribit-options-bot/commit/b927ca4 -->
 ### Five years of data before risking a trade
@@ -23,8 +49,6 @@ The gating logic now requires five years of volatility history to confirm the tr
 
 <sub>Python · Telegram</sub>
 <!-- /portfolio-entry:deribit-options-bot/commit/b927ca4 -->
-
-## Recently shipped
 
 <!-- portfolio-entry:deribit-options-bot/commit/ae3c324 -->
 ### A daily review the bot writes for itself
@@ -64,5 +88,3 @@ The practical consequence is that the system can decline to act when conditions 
 
 <sub>Python · Telegram · Deribit API</sub>
 <!-- /portfolio-entry:deribit-options-bot/commit/cb37e74 -->
-
-## Stack notes
