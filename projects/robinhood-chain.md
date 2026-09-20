@@ -7,7 +7,36 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
+<!-- portfolio:overview -->
+
+> A Python bot that reads on-chain DEX data to inform liquidity and trading decisions
+
+## What it is
+
+Passive liquidity provision on a DEX is harder than it looks: headline APY figures mislead, fee tiers are guessed rather than measured, and a bot that forgets its state on restart makes bad decisions. This bot replaces estimates with direct on-chain measurement so a solo operator can manage liquidity positions with accurate, persistent data.
+
+## How it works
+
+1. Polls on-chain liquidity pools and records real flow data rather than relying on reported estimates.
+2. Calculates actual earnings for each liquidity position by measuring what the position receives, not what the interface advertises.
+3. Selects fee tiers by analysing observed transaction flow through each tier.
+4. Detects price gaps in the order book that carry a genuine signal, filtering out noise.
+5. Persists all state so history and context survive a cold restart without data loss.
+6. Publishes dashboard snapshots on a controlled schedule to keep reporting consistent and auditable.
+
 ## What makes it interesting
+
+- State is written to durable storage so a cold restart does not erase history or corrupt in-flight decisions.
+- Headline APY figures are cross-checked against a derived metric that actually drives position decisions, exposing when the quoted number quietly lies.
+- Fee tier selection is driven by measuring real transaction flow rather than accepting the pool's self-reported figures.
+- A calendar-aware layer teaches the bot that weekend market behaviour differs, preventing it from applying weekday assumptions around the clock.
+- Pre-registration logic gates entry into new liquidity positions, adding a deliberate checkpoint before capital is committed.
+
+## Stack
+
+Python
+
+<!-- /portfolio:overview -->
 
 ## How it works
 
@@ -138,5 +167,3 @@ The practical consequence: paper-trading signals — practice trades logged with
 
 <sub>Python · Telegram Bot API · Blockchain data feeds</sub>
 <!-- /portfolio-entry:robinhood-chain/commit/06286b2 -->
-
-## Stack notes
