@@ -11,24 +11,24 @@
 
 ## What it is
 
-Tokenized-equity perpetuals are a new and thinly-understood market where the cost of blind exploration can silently erode a fixed bankroll. This bot runs paper trades on Hyperliquid HIP-3 to measure whether a real edge exists before any live capital is committed. It is built for a solo researcher who needs the measurement itself to be trustworthy, not just the eventual signal.
+Tokenized-equity perpetuals on Hyperliquid are a new and thinly-studied market where edge is unproven. This bot runs paper trades to measure whether a real edge exists before any real capital is committed. It is built for a solo operator who wants rigorous cost and risk accounting before scaling up.
 
 ## How it works
 
 1. A backfill command seeds local price references for the past N hours from Hyperliquid.
-2. A run-once scan evaluates open positions and market conditions against two active strategies.
-3. Position sizing is kept at a bounded minimum while the edge remains unproven, protecting the model bankroll.
-4. Pre-news and low-confidence states suppress order submission entirely rather than acting on weak signals.
-5. Resting limit orders are placed instead of market orders so the bot never chases the price.
-6. A digest command renders a daily summary, promoting only the signals that cross a materiality threshold.
+2. A scan pass evaluates open positions and candidate signals against two researched strategies.
+3. Position sizing is kept near the minimum allowed while the edge measurement is ongoing.
+4. Resting limit orders are placed rather than chasing the market price at execution time.
+5. A daily digest command aggregates the ledger and surfaces only signals that meet a confidence threshold.
+6. Portfolio gates, cost checks, and a self-suspension mechanism halt activity when conditions fall outside safe bounds.
 
 ## What makes it interesting
 
-- Bounded minimum-size exploration: the bot deliberately trades small during the measurement phase so that proving or disproving the edge does not itself destroy the bankroll.
-- Explicit stopping rules: a dedicated exploration-budget gate halts further paper trades when the evidence gathered is sufficient, avoiding over-fitting to a paper record.
-- Honest silence over false confidence: the bot suppresses output and orders when its own confidence estimate falls below threshold, rather than acting and rationalising later.
-- Pre-announcement step-back: the bot detects upcoming scheduled news events and withdraws resting orders proactively to avoid adverse fills.
-- Signal promotion gate for the digest: raw signals are filtered before surfacing in the daily digest, so the summary reflects only material findings rather than noise.
+- Bounded minimum-size exploration: the bot deliberately trades at the smallest viable size so the bankroll is protected while the edge is being measured rather than assumed.
+- Honest silence over false confidence: the digest suppresses signals that do not meet a threshold, documented as a deliberate design decision rather than an oversight.
+- Self-suspension logic: the bot detects conditions where it should not trust its own signals and stops acting, covering both low-confidence market states and pre-news windows.
+- Critical signal promotion: only signals that clear a severity bar are surfaced in the daily digest, reducing noise from a high-frequency scan cadence.
+- Zero runtime dependencies: the entire system runs on the Python standard library, eliminating supply-chain risk and simplifying deployment.
 
 ## Stack
 
