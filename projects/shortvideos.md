@@ -7,27 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> An automated short-video production engine with self-directing scheduling and verifiable fairness
+> An automated short-video production engine with self-managing scheduling and verified audio
 
 ## What it is
 
-Producing short videos consistently is a coordination problem: narration, scheduling, shuffling, and distribution decisions each demand attention at different times. Short Videos collapses that overhead into a single automated engine that manages the pipeline end to end. It is built for a solo creator who wants the output without the operational load.
+Producing short-form video at volume means coordinating narration, timing, fairness, and distribution — work that usually falls to a team. This system handles that pipeline as a single automated engine. It is built for a solo operator who needs broadcast-quality output without manual coordination at each step.
 
 ## How it works
 
-1. The engine schedules upcoming videos using a reach-first posting strategy baked into the planner.
-2. Podcast-style narration is generated with explicit uncertainty markers where the system's confidence is low.
-3. A shuffle algorithm orders content and produces a proof that the ordering is fair.
-4. The production pipeline runs autonomously, triggering each stage without manual intervention.
-5. Voice comprehension is validated by running the output against real broadcast audio before publish.
+1. The production engine ingests content and drives itself through each stage without manual intervention.
+2. A narration layer generates podcast-style audio and explicitly marks what it is not certain about.
+3. Audio comprehension is validated against real broadcast recordings before any clip is accepted.
+4. A verified shuffle algorithm sequences clips and produces a proof that the ordering is fair.
+5. A reach-first planner decides when and where to post based on distribution priority, not convenience.
+6. The scheduler executes posting autonomously according to the planner's output.
 
 ## What makes it interesting
 
-- Narration layer encodes its own uncertainty rather than presenting low-confidence output as fact.
-- The shuffle implementation generates a verifiable fairness proof, making the ordering auditable.
-- Posting timing is not a manual decision — reach-first scheduling logic is embedded directly in the planner.
-- Voice comprehension quality is benchmarked against real broadcast audio, not synthetic test cases.
-- The entire production engine is self-directing, removing the human coordination layer from the loop.
+- Narration is designed to own its uncertainty — the system flags low-confidence segments rather than silently passing them through.
+- Shuffle fairness is cryptographically or algorithmically provable, not assumed — the ordering can be audited after the fact.
+- Voice comprehension is benchmarked against real broadcast audio, grounding quality checks in an external standard rather than synthetic test data.
+- The posting planner encodes a reach-first strategy as a first-class constraint, separating distribution logic from scheduling mechanics.
+- The entire production pipeline is self-running, meaning operational decisions are handled in code rather than delegated to a human between steps.
 
 ## Stack
 
@@ -35,23 +36,7 @@ TypeScript
 
 <!-- /portfolio:overview -->
 
-## What makes it interesting
-
-<!-- portfolio-entry:shortvideos/general/fdc6bbf -->
-### A video production engine that runs itself
-
-Turning a topic into a finished, platform-ready short video normally means writing a script, sourcing footage, recording or cloning a voice, timing captions, and then manually uploading to each channel. This engine does all of that in sequence — planning, scripting, rendering, reviewing, and publishing — with a human approving the result rather than performing the steps.
-
-It covers a wide range of formats (vertical reels, infographics, stickman explainers, before-and-after reveals, long-form YouTube pieces) and handles the mechanics that are easy to get wrong: it will not publish a video that fails a visual quality check, will not post the same slot twice, and retries only the failures it can safely retry.
-
-- Approval gate sits between generation and publish — nothing goes live unreviewed
-- Voice, captions, and b-roll are assembled automatically from approved assets
-- YouTube OAuth, scheduling, thumbnails, and analytics snapshots all handled in-system
-
-<sub>TypeScript · ElevenLabs · YouTube Data API · Manim · Google Cloud</sub>
-<!-- /portfolio-entry:shortvideos/general/fdc6bbf -->
-
-## How it works
+## Recently shipped
 
 <!-- portfolio-entry:shortvideos/commit/509f75d -->
 ### Podcast narration that owns its uncertainty
@@ -79,7 +64,19 @@ The distinction matters most when the playlist is short or the weights are uneve
 <sub>TypeScript</sub>
 <!-- /portfolio-entry:shortvideos/commit/280a55b -->
 
-## Recently shipped
+<!-- portfolio-entry:shortvideos/general/fdc6bbf -->
+### A video production engine that runs itself
+
+Turning a topic into a finished, platform-ready short video normally means writing a script, sourcing footage, recording or cloning a voice, timing captions, and then manually uploading to each channel. This engine does all of that in sequence — planning, scripting, rendering, reviewing, and publishing — with a human approving the result rather than performing the steps.
+
+It covers a wide range of formats (vertical reels, infographics, stickman explainers, before-and-after reveals, long-form YouTube pieces) and handles the mechanics that are easy to get wrong: it will not publish a video that fails a visual quality check, will not post the same slot twice, and retries only the failures it can safely retry.
+
+- Approval gate sits between generation and publish — nothing goes live unreviewed
+- Voice, captions, and b-roll are assembled automatically from approved assets
+- YouTube OAuth, scheduling, thumbnails, and analytics snapshots all handled in-system
+
+<sub>TypeScript · ElevenLabs · YouTube Data API · Manim · Google Cloud</sub>
+<!-- /portfolio-entry:shortvideos/general/fdc6bbf -->
 
 <!-- portfolio-entry:shortvideos/planner/fbb0176 -->
 ### Reach-first posting strategy built into the planner
