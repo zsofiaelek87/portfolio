@@ -1,15 +1,42 @@
 # Hyperliquid Equity Bot
 
-> Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
-
 **Stack:** Python
 
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
+
+> Paper-trading bot for tokenized-equity perpetuals on Hyperliquid HIP-3
+
+## What it is
+
+Tokenized-equity perpetuals are a new and thinly-understood market where the cost of blind exploration can silently erode a fixed bankroll. This bot runs paper trades on Hyperliquid HIP-3 to measure whether a real edge exists before any live capital is committed. It is built for a solo researcher who needs the measurement itself to be trustworthy, not just the eventual signal.
 
 ## How it works
+
+1. A backfill command seeds local price references for the past N hours from Hyperliquid.
+2. A run-once scan evaluates open positions and market conditions against two active strategies.
+3. Position sizing is kept at a bounded minimum while the edge remains unproven, protecting the model bankroll.
+4. Pre-news and low-confidence states suppress order submission entirely rather than acting on weak signals.
+5. Resting limit orders are placed instead of market orders so the bot never chases the price.
+6. A digest command renders a daily summary, promoting only the signals that cross a materiality threshold.
+
+## What makes it interesting
+
+- Bounded minimum-size exploration: the bot deliberately trades small during the measurement phase so that proving or disproving the edge does not itself destroy the bankroll.
+- Explicit stopping rules: a dedicated exploration-budget gate halts further paper trades when the evidence gathered is sufficient, avoiding over-fitting to a paper record.
+- Honest silence over false confidence: the bot suppresses output and orders when its own confidence estimate falls below threshold, rather than acting and rationalising later.
+- Pre-announcement step-back: the bot detects upcoming scheduled news events and withdraws resting orders proactively to avoid adverse fills.
+- Signal promotion gate for the digest: raw signals are filtered before surfacing in the daily digest, so the summary reflects only material findings rather than noise.
+
+## Stack
+
+Python
+
+<!-- /portfolio:overview -->
+
+## Recently shipped
 
 <!-- portfolio-entry:hyperliquid-equity-bot/commit/b00b75c -->
 ### Sizing up before the signal is certain
@@ -36,8 +63,6 @@ The practical consequence is that curiosity has a cost even in simulation. A sys
 
 <sub>Python · Hyperliquid</sub>
 <!-- /portfolio-entry:hyperliquid-equity-bot/commit/8ad8b41 -->
-
-## Recently shipped
 
 <!-- portfolio-entry:hyperliquid-equity-bot/commit/7bd4670 -->
 ### Honest silence instead of false confidence
@@ -103,5 +128,3 @@ That kind of restraint is harder to build than it sounds. Knowing when *not* to 
 
 <sub>Python</sub>
 <!-- /portfolio-entry:hyperliquid-equity-bot/commit/2eb4883 -->
-
-## Stack notes
