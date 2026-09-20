@@ -70,7 +70,7 @@ Route ideas through AI-guided PM review into GitHub pull requests automatically
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
-Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
+Automated options trading bot for Deribit with self-written daily reviews
 
 <sub>Python — 4 write-ups</sub>
 
