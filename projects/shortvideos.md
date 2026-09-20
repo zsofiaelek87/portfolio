@@ -5,6 +5,36 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
+<!-- portfolio:overview -->
+
+> An automated short-video production engine with self-directing scheduling and verifiable fairness
+
+## What it is
+
+Producing short videos consistently is a coordination problem: narration, scheduling, shuffling, and distribution decisions each demand attention at different times. Short Videos collapses that overhead into a single automated engine that manages the pipeline end to end. It is built for a solo creator who wants the output without the operational load.
+
+## How it works
+
+1. The engine schedules upcoming videos using a reach-first posting strategy baked into the planner.
+2. Podcast-style narration is generated with explicit uncertainty markers where the system's confidence is low.
+3. A shuffle algorithm orders content and produces a proof that the ordering is fair.
+4. The production pipeline runs autonomously, triggering each stage without manual intervention.
+5. Voice comprehension is validated by running the output against real broadcast audio before publish.
+
+## What makes it interesting
+
+- Narration layer encodes its own uncertainty rather than presenting low-confidence output as fact.
+- The shuffle implementation generates a verifiable fairness proof, making the ordering auditable.
+- Posting timing is not a manual decision — reach-first scheduling logic is embedded directly in the planner.
+- Voice comprehension quality is benchmarked against real broadcast audio, not synthetic test cases.
+- The entire production engine is self-directing, removing the human coordination layer from the loop.
+
+## Stack
+
+TypeScript
+
+<!-- /portfolio:overview -->
+
 ## What makes it interesting
 
 <!-- portfolio-entry:shortvideos/general/fdc6bbf -->
@@ -76,5 +106,3 @@ The dossier behind the test is built from a genuine source rather than construct
 
 <sub>TypeScript</sub>
 <!-- /portfolio-entry:shortvideos/commit/d224b12 -->
-
-## Stack notes
