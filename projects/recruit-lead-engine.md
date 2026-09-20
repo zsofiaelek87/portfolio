@@ -5,9 +5,36 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
+
+> A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
+
+## What it is
+
+Recruiters expanding into new markets waste time juggling spreadsheets, guessing who to contact, and tracking whether anyone replied. This system gives a solo sales manager a scored lead pipeline, contact discovery, and a controlled email outreach queue — all running locally or on a free Firebase deployment. No SaaS subscriptions, no data leaving the machine unless you choose to send it.
 
 ## How it works
+
+1. Companies are added via a JSON import file and scanned to extract hiring signals such as open role count, role age, and tech stack difficulty.
+2. A scoring engine rates each company 0–100 and assigns it to a priority tier — contact today, this week, review later, or ignore.
+3. A daily action queue is generated from the scored leads, telling the sales manager exactly who to reach out to and in what order.
+4. A local contact-finder script identifies the right people at each company and adds them to a contacts list.
+5. Outreach drafts are generated from templates and queued for review in a hosted Firebase UI before any email is sent.
+6. Emails are dispatched in small batches through a local PowerShell script via Outlook Web, with safeguards preventing duplicate sends and enforcing quiet periods and stop rules.
+
+## What makes it interesting
+
+- Deduplication is enforced at the engine level — a dedicated rule prevents the same email from being sent twice to any recipient regardless of queue state.
+- The outreach queue includes built-in guardrails for contact discovery, capping how many contacts are queued per company to avoid over-contacting a single organisation.
+- Follow-up logic knows when to stop: a tiered rule set halts sequences based on reply state and attempt count rather than relying on manual triage.
+- Draft validation blocks outreach emails from leaving the queue if they fail formatting or completeness checks — drafts that look wrong stay queued.
+- A stalled-batch recovery path was designed explicitly so that a single unresponsive contact or expired Outlook session does not halt the rest of the pipeline.
+
+## Stack
+
+TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
+
+<!-- /portfolio:overview -->
 
 ## Recently shipped
 
@@ -197,5 +224,3 @@ Personalised recruiting outreach usually means someone opening a profile, pullin
 
 <sub>TypeScript</sub>
 <!-- /portfolio-entry:recruit-lead-engine/commit/2f37430 -->
-
-## Stack notes
