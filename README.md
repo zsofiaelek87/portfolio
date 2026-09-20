@@ -34,25 +34,25 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 ### [Polymarket Bot](projects/polymarket-bot.md)
 
-An automated market-maker for Polymarket prediction markets, built in Python
+_No description yet._
 
 <sub>Python — 24 write-ups</sub>
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-A solo-built research and compliance toolkit for equity market analysis
+A self-running research and surveillance system for solo market analysis
 
 <sub>9 write-ups</sub>
 
 ### [Hyperliquid Equity Bot](projects/hyperliquid-equity-bot.md)
 
-Paper-trading bot for tokenized-equity perpetuals on Hyperliquid HIP-3
+Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
 
 <sub>Python — 7 write-ups</sub>
 
 ### [Game Builder](projects/game-builder.md)
 
-Mobile studio where kids describe a game and play it instantly — no code needed
+Mobile game remixer for kids: describe a game idea, play it in seconds
 
 <sub>TypeScript — 1 write-up</sub>
 
@@ -70,13 +70,13 @@ Route ideas through AI-guided PM review into GitHub pull requests automatically
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
-Automated options trading system on Deribit with self-auditing and volatility analysis
+Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
 
 <sub>Python — 4 write-ups</sub>
 
 ### [Binance Carry Bot](projects/binance-carry-bot.md)
 
-Automated carry-trade executor that self-evaluates its own performance history
+Automated carry-trade bot that reviews its own history to size and promote positions
 
 <sub>Python — 2 write-ups</sub>
 
