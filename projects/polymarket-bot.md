@@ -11,24 +11,24 @@
 
 ## What it is
 
-Prediction markets reward accurate probability estimates, but quoting both sides of a market exposes a bot to manipulation, stale signals, and its own blind spots. This bot acts as an automated market-maker on Polymarket, managing positions and spreads across multiple contracts. It is a solo research and engineering project focused on making the quoting strategy robust rather than just profitable on paper.
+Prediction markets reward accurate pricing, but they also attract informed traders who will take the other side of any mispriced quote. This bot acts as an automated market-maker on Polymarket, quoting both sides of binary markets while managing the real risk of being picked off by better-informed participants. It is a solo engineering project focused on robust pricing logic, position accountability, and honest self-evaluation.
 
 ## How it works
 
-1. The bot scans open Polymarket contracts and identifies lanes worth quoting based on volatility and liquidity signals.
-2. A pricing model sets bid and ask quotes, explicitly assuming counterparties may attempt to exploit it.
-3. Detectors embedded at every digest layer flag anomalies—manipulation attempts, stale data, or known biases—before an order is placed.
-4. Each position is opened with its own audit trail, recording only information the bot had available at decision time.
-5. After fills, the bot grades its reasoning process and not just the outcome, then attributes losses to specific failure modes.
-6. Spread and lane parameters are adjusted when post-mortem analysis reveals a systematic skew or a quiet lane worth reviving.
+1. The bot scans available markets and selects lanes worth quoting based on volatility and activity signals.
+2. It computes bid and ask prices, embedding assumptions about adversarial flow and spread requirements into every quote.
+3. Quotes are posted and continuously revised as market conditions change, with spread corrections applied when fills are skewing.
+4. Every position is tagged with its own paper trail so the source of each fill can be reviewed independently.
+5. Behavioural detectors run inside every digest layer to flag manipulation, mispricing, or unexpected patterns.
+6. Performance is graded on the quality of reasoning behind each prediction, not just whether the outcome was correct.
 
 ## What makes it interesting
 
-- Epistemically honest backtesting: the memory layer records only what the bot knew at decision time, preventing look-ahead leakage ('Predicting the past is cheating').
-- Adversarial pricing model that treats incoming order flow as potentially deceptive by design ('A pricing bot that assumes it will be deceived').
-- Anomaly detectors wired into every digest layer rather than bolted on as a post-processing step, so bad signals are caught before they reach the order logic.
-- Per-position paper trails that make loss attribution exact—down to the specific decision point where a strategy failed ('When the strategy loses, find exactly where').
-- Reasoning-level grading separates whether the bot's logic was sound from whether the outcome was good, enabling principled strategy updates ('Grading the reasoning, not just the result').
+- Adversarial pricing model: the bot prices quotes under the explicit assumption it will be deceived by informed traders.
+- Memory architecture that records only what the bot knew at decision time, preventing look-ahead contamination during backtesting.
+- Spread calibration loop that identified and corrected a systematic skew that was distorting every fill.
+- Per-position audit trail allowing precise post-mortems when a strategy loses, down to the individual decision.
+- Behavioural detectors embedded at every digest layer rather than applied as a post-processing step.
 
 ## Stack
 
