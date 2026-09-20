@@ -4,25 +4,25 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
+A Python bot that measures DeFi liquidity and timing signals for on-chain trading
 
 <sub>Python — 10 write-ups</sub>
 
 ### [Study App](projects/studyapp.md)
 
-Two Firebase-hosted study apps for kids, managed from a single monorepo
+Two Firebase-hosted Hungarian study apps for kids, managed from one monorepo
 
 <sub>TypeScript — 6 write-ups</sub>
 
 ### [Short Videos](projects/shortvideos.md)
 
-An automated short-video production engine with self-managing scheduling and verified audio
+_No description yet._
 
 <sub>TypeScript — 5 write-ups</sub>
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
+A free, local sales CRM for IT recruiters expanding into new markets
 
 <sub>TypeScript — 15 write-ups</sub>
 
