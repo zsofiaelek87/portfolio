@@ -40,7 +40,7 @@ An automated market-maker for Polymarket prediction markets, built in Python
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-A self-running research and surveillance system for solo market analysis
+A solo-built research and compliance toolkit for equity market analysis
 
 <sub>9 write-ups</sub>
 
