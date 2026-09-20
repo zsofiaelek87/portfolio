@@ -70,13 +70,13 @@ Route ideas through AI-guided PM review into GitHub pull requests automatically
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
-Automated options trading bot for Deribit with self-written daily reviews
+Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
 
 <sub>Python — 4 write-ups</sub>
 
 ### [Binance Carry Bot](projects/binance-carry-bot.md)
 
-Harvest cryptocurrency funding-rate premiums through delta-neutral positions via Telegram control
+Automated carry-trade executor that self-evaluates its own performance history
 
 <sub>Python — 2 write-ups</sub>
 
