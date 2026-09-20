@@ -7,6 +7,37 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
+<!-- portfolio:overview -->
+
+> A monorepo of two Hungarian study apps for primary-school children, deployed via CI/CD
+
+## What it is
+
+Young children learning Hungarian reading and elementary science need practice that feels like play rather than homework. This monorepo delivers two separate web apps — one per child, one per subject — each with quiz games, daily missions, and offline support. A PIN-protected parent dashboard sits behind each app so a caregiver can monitor progress without exposing controls to the child.
+
+## How it works
+
+1. Content is authored once per app and stored so it propagates to all devices instantly.
+2. Each app runs locally with a dev server for fast iteration before any deployment.
+3. On push to main, path-based GitHub Actions workflows detect which app changed and trigger only its deploy job.
+4. Firebase credentials and the parent PIN are injected at build time from per-app GitHub Secrets, keeping configuration out of source.
+5. The built static bundle is deployed to Firebase Hosting, where SPA rewrites serve every route.
+6. Both apps cache assets for offline use so a lesson session survives a dropped connection.
+
+## What makes it interesting
+
+- Monorepo with per-app CI/CD: path filters on deploy-orsi.yml and deploy-matyi.yml mean a change in one app never triggers a deploy of the other.
+- All Firebase credentials and the parent-dashboard PIN are stored as prefixed GitHub Secrets (ORSI_ / MATYI_), so two fully isolated Firebase projects share one repo without credential bleed.
+- AI-generated content pipeline lets lessons be written and shipped without manual asset work for each topic.
+- Offline-first architecture ensures the apps remain usable on any device regardless of connectivity.
+- A daily mission flow structures each session, replacing open-ended browsing with a guided learning path suited to young children.
+
+## Stack
+
+TypeScript · Firebase Hosting · GitHub Actions
+
+<!-- /portfolio:overview -->
+
 ## What makes it interesting
 
 <!-- portfolio-entry:studyapp/commit/a4f5d6f -->
@@ -21,8 +52,6 @@ Because both Hungarian study apps share a single codebase and the same data laye
 
 <sub>TypeScript · Firebase · Firestore · GitHub Actions</sub>
 <!-- /portfolio-entry:studyapp/commit/a4f5d6f -->
-
-## How it works
 
 ## Recently shipped
 
@@ -88,5 +117,3 @@ Language learning apps live or die by whether users return the next day. This co
 
 <sub>TypeScript · Firebase</sub>
 <!-- /portfolio-entry:studyapp/commit/0e8bea2 -->
-
-## Stack notes
