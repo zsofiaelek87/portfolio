@@ -5,9 +5,38 @@
 <!-- Entries below are drafted from private repositories by the portfolio agent
      and published only after review. Source code is not public. -->
 
-## What makes it interesting
+<!-- portfolio:overview -->
+
+> An automated market-maker for Polymarket prediction markets, written in Python
+
+## What it is
+
+Prediction markets reward accurate pricing, but quoting both sides of a thin market exposes a bot to informed traders, stale signals, and its own blind spots. This bot acts as an automated market-maker on Polymarket, managing positions and spreads across multiple contracts. It is built for a solo operator who wants disciplined, auditable execution rather than a black-box strategy.
 
 ## How it works
+
+1. The bot scans active markets and identifies contracts where it is willing to quote both sides.
+2. It prices each side using a model that accounts for current volatility as a signal rather than noise.
+3. Before submitting quotes, manipulation and deception detectors run at every digest layer to flag anomalous order flow.
+4. Fills are executed and each resulting position is tagged with its own paper trail recording the reasoning at entry.
+5. Performance is graded on the quality of reasoning, not just the profit-and-loss outcome.
+6. Periodic reviews identify exactly where a losing strategy broke down and surface untested biases for examination.
+
+## What makes it interesting
+
+- Adversarial pricing model: the bot prices quotes under the explicit assumption that it will be deceived, building in structural skepticism about incoming order flow.
+- Layered manipulation detection wired into every digest stage, not bolted on after the fact.
+- Memory architecture that records only what the bot knew at decision time, preventing any look-ahead contamination when reviewing past behaviour.
+- Per-position audit trail that stores the reasoning behind each entry, enabling post-hoc grading of logic rather than just outcomes.
+- Spread calibration step that identified and corrected a systematic skew that was distorting every fill.
+
+## Stack
+
+Python
+
+<!-- /portfolio:overview -->
+
+## Recently shipped
 
 <!-- portfolio-entry:polymarket-bot/commit/46d09a1 -->
 ### When volatility itself becomes the signal
@@ -198,8 +227,6 @@ Encoding that accounting in software means the exposure is visible every time th
 <sub>Python</sub>
 <!-- /portfolio-entry:polymarket-bot/commit/21598b6 -->
 
-## Recently shipped
-
 <!-- portfolio-entry:polymarket-bot/commit/e7c5267 -->
 ### A circuit breaker that learned to step aside
 
@@ -312,5 +339,3 @@ The practical consequence: the bot's confidence in a signal is shaped by the qua
 
 <sub>Python</sub>
 <!-- /portfolio-entry:polymarket-bot/commit/1b172ac -->
-
-## Stack notes
