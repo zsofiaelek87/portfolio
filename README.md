@@ -16,7 +16,7 @@ Two Firebase-hosted study apps for kids, managed from a single monorepo
 
 ### [Short Videos](projects/shortvideos.md)
 
-_No description yet._
+An automated short-video production engine with self-managing scheduling and verified audio
 
 <sub>TypeScript — 5 write-ups</sub>
 
