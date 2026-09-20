@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> A free, local sales CRM for IT recruiters expanding into new markets
+> Local CRM pipeline for IT recruiters prospecting into new markets
 
 ## What it is
 
-Finding the right hiring managers at the right companies, then reaching them without sounding like a bot, takes more manual work than most recruitment tools acknowledge. Recruit Lead Engine is a self-hosted pipeline that scores company leads, surfaces the right contacts, and manages outreach sequencing — all without paid APIs or third-party CRMs. It is built for a solo recruiter or small agency doing deliberate, high-quality outreach into a new geography.
+Finding the right contact at the right company and sending a credible first email takes hours of manual work that most CRM tools do not reduce. Recruit Lead Engine is a free, self-hosted sales intelligence system built for a solo recruiter expanding an IT staffing business into Western Europe. It handles lead scoring, contact discovery, outreach drafting, and send-queue management without paid APIs or a cloud backend.
 
 ## How it works
 
-1. Companies are imported manually via a JSON file and scored 0–100 across signals such as open role count, role age, tech-stack difficulty, and company size.
-2. A daily action queue is generated from the scores, surfacing A-tier leads to contact today and B-tier leads for the week.
-3. A local contact-finder script identifies people to reach at each company when names are missing from the data.
-4. Outreach drafts are generated from templates and queued in a hosted Firebase UI for review before anything is sent.
-5. Approved emails are sent in small batches from a local PowerShell script through Outlook Web, keeping the sender identity natural.
-6. Reply handling, follow-up timing, and stop conditions are managed by the engine so no contact receives duplicate or ill-timed messages.
+1. Companies are added to a local JSON file and scanned by a scoring engine that grades each lead A–C on signals such as open-role count, role age, and tech-stack difficulty.
+2. A daily action queue is generated from the scored leads, surfacing which companies to contact today versus later in the week.
+3. A local contact-finder script resolves missing names and email candidates for each target company.
+4. Outreach drafts are generated from templates and queued for review in a hosted Firebase UI.
+5. Approved emails are sent in small batches through a local PowerShell script that drives Outlook Web, keeping sends human-paced.
+6. Reply status, follow-up timing, and send history are tracked in Firestore so the queue always reflects the current state of each conversation.
 
 ## What makes it interesting
 
-- Built-in deduplication ensures the engine never sends the same email twice to a recipient, enforced at the queue level before dispatch.
-- Queue guardrails in the contact-discovery step cap outreach volume per company, protecting sender reputation and recipient experience.
-- A quiet-rule layer suppresses outreach automatically under defined conditions — the engine knows when to stay silent without manual intervention.
-- Follow-up sequences have explicit stop conditions baked in, so threads terminate cleanly rather than requiring manual cancellation.
-- Outreach drafts are validated before release; the system refuses to dispatch messages that fail a correctness check, not just a formatting one.
+- Deduplication guard ensures the same email is never queued or sent twice, enforced at the draft stage before any message reaches the send queue.
+- Built-in queue guardrails on the contact-discovery step limit how many candidates are surfaced per company, preventing contact-list bloat from stalling the pipeline.
+- A quiet-period rule suppresses outreach automatically when a recipient has already replied or a follow-up sequence has reached its limit, protecting every contact in the database.
+- Outreach drafts go through a validation pass that refuses to release a message flagged as malformed or incomplete, keeping human review the final gate.
+- The pipeline is statically exported at build time—no server required—and deployed to Firebase Hosting for free, with all mutable state held in local JSON or Firestore.
 
 ## Stack
 
-TypeScript · Next.js · Firebase Hosting · Firestore · PowerShell · Python · Outlook Web
+TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
 
 <!-- /portfolio:overview -->
 
