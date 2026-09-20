@@ -4,13 +4,13 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-A Python bot that measures DeFi liquidity and timing signals for on-chain trading
+Paper-trade strategies and track airdrop opportunities on blockchain via Telegram control
 
 <sub>Python — 10 write-ups</sub>
 
 ### [Study App](projects/studyapp.md)
 
-Two Firebase-hosted Hungarian study apps for kids, managed from one monorepo
+Two Firebase-hosted study apps for kids, managed from a single monorepo
 
 <sub>TypeScript — 6 write-ups</sub>
 
