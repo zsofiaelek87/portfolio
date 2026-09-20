@@ -16,7 +16,7 @@ A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
 
 ### [Short Videos](projects/shortvideos.md)
 
-_No description yet._
+An automated short-video production system built for solo distribution
 
 <sub>TypeScript — 5 write-ups</sub>
 
