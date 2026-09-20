@@ -22,7 +22,7 @@ An automated short-video production system built for solo distribution
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-A local sales intelligence and outreach CRM for IT recruitment, built without paid APIs
+Local CRM pipeline for IT recruiters prospecting into new markets
 
 <sub>TypeScript — 15 write-ups</sub>
 
