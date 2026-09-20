@@ -7,27 +7,25 @@
 
 <!-- portfolio:overview -->
 
-> Automated options trading bot for Deribit with self-written daily reviews
+> Automated options trading system on Deribit with self-auditing and volatility analysis
 
 ## What it is
 
-Discretionary options trading on crypto derivatives requires reviewing large amounts of historical data and tracking live volatility conditions consistently — work that is easy to skip and hard to systematize. This bot handles the research and monitoring loop for a solo trader on Deribit, surfacing the information needed to make a position decision or refusing to proceed when the data isn't there. It is built for a single operator who wants discipline enforced by code.
+Discretionary options traders spend hours each day gathering data, reviewing positions, and sanity-checking market conditions before acting. This bot automates that preparation layer for Deribit options, enforcing data quality gates and volatility analysis before any trade is considered. It is built for a solo trader who wants a rigorous, repeatable process without the manual overhead.
 
 ## How it works
 
-1. Pulls up to five years of historical options data from Deribit before any trade is considered.
-2. Checks whether a requested study has sufficient data and returns a clear refusal if it does not.
-3. Measures realized versus implied volatility to quantify the volatility premium rather than assuming one exists.
-4. Evaluates current market conditions against the historical record to support or reject a trade idea.
-5. Writes a structured daily review of its own activity, positions, and market observations.
-6. Executes or skips orders based on the outcome of that review cycle.
+1. Historical data spanning five years is fetched and validated before the system is permitted to enter any position.
+2. Each day the bot generates a structured self-review, summarising market conditions, open positions, and any anomalies.
+3. Before a study or backtest runs, the system checks whether the required data is present and complete, or returns an explicit refusal.
+4. Realised and implied volatility are measured directly from market data to determine whether a volatility premium actually exists at that moment.
 
 ## What makes it interesting
 
-- Five years of historical data are loaded and validated before any trade is risked, making recency bias structurally harder.
-- The bot authors its own daily review, creating a written audit trail of decisions without manual journaling.
-- Data requests return an explicit refusal when a study lacks sufficient history, rather than silently degrading to a smaller sample.
-- Volatility premium is measured from realized versus implied volatility rather than assumed, grounding each trade in current evidence.
+- Five-year data requirement acts as a hard prerequisite gate, preventing trades or studies from running on insufficient history.
+- The bot authors its own daily review, creating an auditable log of its reasoning and market observations without human prompting.
+- Data requests return a structured refusal rather than a silent failure or partial result when requirements are not met.
+- Volatility premium is computed from observed data rather than assumed, grounding position sizing and entry decisions in measured conditions.
 
 ## Stack
 
