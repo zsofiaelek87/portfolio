@@ -7,28 +7,27 @@
 
 <!-- portfolio:overview -->
 
-> An automated short-video production engine with self-managing scheduling and verified audio
+> An automated short-video production system built for solo distribution
 
 ## What it is
 
-Producing short-form video at volume means coordinating narration, timing, fairness, and distribution — work that usually falls to a team. This system handles that pipeline as a single automated engine. It is built for a solo operator who needs broadcast-quality output without manual coordination at each step.
+Producing short video content consistently is a scheduling, scripting, and publishing problem all at once. This system automates the full pipeline from narration to posting, so one person can run a video channel without a production team. It is built for a solo builder who wants output volume without operational overhead.
 
 ## How it works
 
-1. The production engine ingests content and drives itself through each stage without manual intervention.
-2. A narration layer generates podcast-style audio and explicitly marks what it is not certain about.
-3. Audio comprehension is validated against real broadcast recordings before any clip is accepted.
-4. A verified shuffle algorithm sequences clips and produces a proof that the ordering is fair.
-5. A reach-first planner decides when and where to post based on distribution priority, not convenience.
-6. The scheduler executes posting autonomously according to the planner's output.
+1. A planner schedules posts using a reach-first strategy that picks optimal distribution windows.
+2. A narration layer scripts and voices content while explicitly representing what it does not know.
+3. A shuffle algorithm sequences clips or segments and produces a verifiable proof of its own fairness.
+4. The production engine assembles final video assets and triggers its own next run without manual intervention.
+5. Finished videos are handed off to the posting layer, which executes the pre-planned distribution schedule.
 
 ## What makes it interesting
 
-- Narration is designed to own its uncertainty — the system flags low-confidence segments rather than silently passing them through.
-- Shuffle fairness is cryptographically or algorithmically provable, not assumed — the ordering can be audited after the fact.
-- Voice comprehension is benchmarked against real broadcast audio, grounding quality checks in an external standard rather than synthetic test data.
-- The posting planner encodes a reach-first strategy as a first-class constraint, separating distribution logic from scheduling mechanics.
-- The entire production pipeline is self-running, meaning operational decisions are handled in code rather than delegated to a human between steps.
+- Narration is designed to own its uncertainty — the system signals low-confidence claims rather than asserting them flatly.
+- The shuffle mechanism is auditable: it generates a proof so the ordering can be verified as fair after the fact.
+- The production engine is self-invoking, eliminating the manual step between finished asset and next scheduled run.
+- The posting planner encodes reach strategy at the planning stage rather than leaving timing as an afterthought.
+- Voice comprehension is regression-tested against real broadcast audio, not synthetic or clean-room samples.
 
 ## Stack
 
