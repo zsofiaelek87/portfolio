@@ -7,26 +7,26 @@
 
 <!-- portfolio:overview -->
 
-> Mobile game remixer for kids: describe a game idea, play it in seconds
+> Mobile studio where kids describe a game and play it instantly — no code needed
 
 ## What it is
 
-Children often have vivid game ideas but no way to act on them without coding skills. Game Builder lets a child type or speak a plain-language description of a game, refines that idea through an AI Prompt Coach, and renders a playable result instantly in the browser. It is designed for young users on phones and requires no installation.
+Children struggle to turn game ideas into something playable without learning to code. Game Builder lets a child type a sentence describing a game, refines that idea through an AI Prompt Coach, and renders a working game on the spot. It runs in the browser on any phone, with no installation required.
 
 ## How it works
 
-1. A child enters a freeform description of the game they want to make.
-2. An AI Prompt Coach — backed by Google Gemini or local fallback logic — sharpens the description into a structured game specification.
-3. The specification is handed to a Phaser 3 game engine running entirely in the browser.
-4. Phaser renders a playable game in real time without any page reload.
-5. The finished game runs as a mobile-first PWA, so it works on any phone browser without an app store.
+1. Child types a free-form description of a game they want to play.
+2. An AI Prompt Coach (powered by Google Gemini or local fallback logic) rewrites and sharpens the idea into a structured game spec.
+3. The spec is handed to a Phaser 3 game engine that assembles and renders the game in the browser.
+4. The finished game runs immediately inside the same PWA — no page change, no download.
+5. Every push to main runs TypeScript checks, builds the app, and deploys to Firebase Hosting via GitHub Actions.
 
 ## What makes it interesting
 
-- Graceful AI fallback: the app ships with local prompt-improvement logic so it remains fully functional when no Gemini API key is present.
-- The core engineering challenge — translating a child's single sentence into a runnable Phaser 3 game — is the explicit focus of the published write-up, signalling deliberate work on the prompt-to-engine contract.
-- CI/CD pipeline runs TypeScript checks, linting, and a production build on every push to main before deploying to Firebase Hosting via GitHub Actions.
-- PWA architecture means the game creator and the created games load on any phone browser with no native install step.
+- Prompt Coach has a local fallback: the app is fully functional without a Gemini API key, so it degrades gracefully rather than breaking.
+- End-to-end pipeline converts a child's natural-language sentence into a live Phaser 3 game session — the write-up singles this out as the core engineering challenge.
+- PWA architecture means the game studio installs and runs on a phone like a native app with no App Store dependency.
+- CI/CD pipeline enforces TypeScript type-checking and linting before any build reaches Firebase Hosting, keeping a solo codebase stable.
 
 ## Stack
 
