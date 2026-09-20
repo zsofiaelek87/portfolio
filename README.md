@@ -46,13 +46,13 @@ A self-running research and surveillance system for solo market analysis
 
 ### [Hyperliquid Equity Bot](projects/hyperliquid-equity-bot.md)
 
-Paper-trading bot for tokenized-equity perpetuals on Hyperliquid HIP-3
+Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
 
 <sub>Python — 7 write-ups</sub>
 
 ### [Game Builder](projects/game-builder.md)
 
-Children describe a game, AI refines the concept, and an engine renders it instantly without coding
+Mobile game remixer for kids: describe a game idea, play it in seconds
 
 <sub>TypeScript — 1 write-up</sub>
 
