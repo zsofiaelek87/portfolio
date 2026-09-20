@@ -46,7 +46,7 @@ A self-running research and surveillance system for solo market analysis
 
 ### [Hyperliquid Equity Bot](projects/hyperliquid-equity-bot.md)
 
-Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
+Paper-trading bot for tokenized-equity perpetuals on Hyperliquid HIP-3
 
 <sub>Python — 7 write-ups</sub>
 
