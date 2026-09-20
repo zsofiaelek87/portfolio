@@ -5,28 +5,28 @@
 
 <!-- portfolio:overview -->
 
-> A self-running research and surveillance system for solo market analysis
+> A solo-built research and compliance toolkit for equity market analysis
 
 ## What it is
 
-Keeping up with markets manually means missing patterns that only appear across many instruments over many days. This system automates the scanning, flags structurally suspicious activity, and surfaces editorial judgments as traceable, auditable logic rather than opinion. It is built for a single analyst who wants the coverage of a larger operation.
+Manually tracking trade rules, editorial disclosures, and suspicious market activity across equities is error-prone and time-consuming. This toolkit automates the scanning, flagging, and auditability work that analysts would otherwise do by hand. It is built for a single researcher who needs rigorous, self-documenting processes rather than a black-box dashboard.
 
 ## How it works
 
-1. A daily screener runs unattended on a schedule, ingesting market data without manual prompting.
-2. Trade rules encoded directly in the codebase apply consistent, version-controlled criteria to every instrument scanned.
-3. A forensics layer applies a defined methodology to detect pump-and-dump patterns and reconstruct deliberate exit sequences.
-4. Editorial signals are generated with explicit reasoning attached, so every opinion can show its work.
-5. Results surface through a research dashboard with granular playback and move controls for review.
-6. A unified view combines the book journal and bot output dashboards, keeping research and system status in one place.
+1. Planning documents are ingested and converted into tracked system logic the codebase can enforce.
+2. Trade rules are encoded directly in code so compliance is testable, not just documented.
+3. A daily screener runs unattended, applying configured criteria across the full universe of instruments.
+4. An automated scanner reconstructs trading sequences to identify deliberate market exits.
+5. Forensics logic flags patterns consistent with pump-and-dump schemes using a documented methodology.
+6. Results surface in a research dashboard alongside a book journal and bot status views, with fine-grained move controls.
 
 ## What makes it interesting
 
-- Trade rules live in source code rather than configuration files, making them versioned, testable, and auditable alongside the rest of the system.
-- Editorial opinions are structurally required to expose their reasoning — the system enforces transparency as a constraint, not a convention.
-- A dedicated forensics methodology for pump-and-dump detection is formalized well enough to drive an automated scanner that reconstructs exit sequences.
-- Planning documents are converted into tracked system logic, closing the gap between intent and implementation.
-- The daily scan runs fully unattended, removing the analyst from the loop for routine coverage while preserving manual review controls.
+- Trade rules are expressed as executable code, making compliance auditable through version control rather than prose documents.
+- Editorial opinions are coupled to a disclosure mechanism that requires them to show their reasoning, preventing unsupported assertions from reaching output.
+- The pump-and-dump forensics module follows an explicit, documented methodology so findings can be reproduced and challenged.
+- The market-exit scanner reconstructs the sequence of events in a position unwind rather than flagging a single data point in isolation.
+- The daily screener is fully unattended, removing the researcher from the loop for routine scanning while preserving manual review for flagged cases.
 
 <!-- /portfolio:overview -->
 
