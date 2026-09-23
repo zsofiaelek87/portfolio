@@ -38,6 +38,19 @@ TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
 
 ## Recently shipped
 
+<!-- portfolio-entry:recruit-lead-engine/commit/196ca1c -->
+### Failure messages that tell you what to do next
+
+When an email send gives up — because of a temporary network hiccup, a rate limit, or anything else outside the recruiter's control — the old behaviour was silence. This commit replaces that silence with a clear notice and a Try again button, so the recruiter knows exactly which send stalled and can act on it in one click.
+
+In a tool whose whole promise is that outreach happens without constant supervision, a failure that disappears into the background is a lead that disappears with it.
+
+- Failed sends surface immediately, not silently
+- One-click retry keeps the recruiter's workflow uninterrupted
+
+<sub>TypeScript</sub>
+<!-- /portfolio-entry:recruit-lead-engine/commit/196ca1c -->
+
 <!-- portfolio-entry:recruit-lead-engine/commit/efc2195 -->
 ### Review queue keeps moving when contacts reply
 
