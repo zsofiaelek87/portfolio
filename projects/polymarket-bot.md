@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/ebcc262 -->
+### Counting observations, not just rows
+
+Prediction markets generate data that can lie about itself: the same underlying event can appear in multiple rows, making a naive tally overconfident about how much the bot actually knows. This commit changes the unit of measurement from database rows to independent observations — distinct, non-overlapping signals — so the bot's confidence in any given price reflects how many genuinely separate data points support it, not how many times the same information was recorded.
+
+The consequence is quieter than it sounds: a system that knows the difference between one observation seen ten times and ten genuinely separate observations makes meaningfully different decisions at the margin.
+
+- Confidence scores now reflect independent signal count, not raw data volume
+- Prevents repeated observations from inflating the bot's certainty about a price
+
+<sub>Python · Polymarket</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/ebcc262 -->
+
 1. The bot scans available markets and selects lanes worth quoting based on volatility and activity signals.
 2. It computes bid and ask prices, embedding assumptions about adversarial flow and spread requirements into every quote.
 3. Quotes are posted and continuously revised as market conditions change, with spread corrections applied when fills are skewing.
