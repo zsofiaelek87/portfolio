@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/14ab796 -->
+### A constraint that nobody knew was drifting
+
+Automated trading systems accumulate rules over time, and some of those rules quietly stop meaning what anyone thought they meant. This commit adds an observation layer that watches for a constraint behaving unexpectedly — not crashing, not throwing an error, just silently producing outcomes nobody intended — and surfaces it before the bot acts on a mistaken assumption.
+
+In an unattended market-maker, a rule that drifts without complaint is more dangerous than one that fails loudly. Catching the quiet kind is harder, and worth more.
+
+- Detects constraint drift before it reaches a live trading decision
+- Surfaces unintended behaviour without requiring a crash or error first
+
+<sub>Python · Polymarket</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/14ab796 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/ebcc262 -->
 ### Counting observations, not just rows
 
