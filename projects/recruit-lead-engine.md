@@ -38,6 +38,19 @@ TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
 
 ## Recently shipped
 
+<!-- portfolio-entry:recruit-lead-engine/commit/78d4252 -->
+### Conversations that close cleanly, without a menu
+
+Outreach sequences have a structural awkward moment: the final message. Most tools end a thread the same way they run it — by offering the next option in a menu. This commit removes that last prompt and lets the sequence close on its own terms, so the recruiter's message reads like a considered ending rather than a form that forgot to stop.
+
+Small in code, meaningful in effect: a prospect's last impression of the outreach is a human close, not a UI artifact.
+
+- Final message in a sequence now closes the thread instead of prompting for more input
+- Outreach reads as intentional rather than template-generated at the end
+
+<sub>TypeScript · CRM</sub>
+<!-- /portfolio-entry:recruit-lead-engine/commit/78d4252 -->
+
 <!-- portfolio-entry:recruit-lead-engine/commit/196ca1c -->
 ### Failure messages that tell you what to do next
 
