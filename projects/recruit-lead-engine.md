@@ -38,6 +38,19 @@ TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
 
 ## Recently shipped
 
+<!-- portfolio-entry:recruit-lead-engine/commit/fdcdce7 -->
+### Outreach that sounds like a person wrote it
+
+Automated recruiting messages have a reputation for sounding exactly like that — automated. This change softens the opening lines that the system uses to begin a conversation with a candidate, moving away from the kind of formulaic phrasing that triggers an immediate mental delete.
+
+It is a small edit with a disproportionate effect: the rest of the pipeline — filtering, review gating, expiry — only pays off if someone actually reads the first sentence.
+
+- Opening lines tuned to read as human rather than templated
+- Sits inside a pipeline that already filters and expires leads automatically
+
+<sub>TypeScript</sub>
+<!-- /portfolio-entry:recruit-lead-engine/commit/fdcdce7 -->
+
 <!-- portfolio-entry:recruit-lead-engine/commit/78d4252 -->
 ### Conversations that close cleanly, without a menu
 
