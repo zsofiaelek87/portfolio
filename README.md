@@ -24,7 +24,7 @@ An automated short-video production system built for solo distribution
 
 Local CRM pipeline for IT recruiters prospecting into new markets
 
-<sub>TypeScript — 17 write-ups</sub>
+<sub>TypeScript — 18 write-ups</sub>
 
 ### [RankWise](projects/rankwise.md)
 
