@@ -42,13 +42,13 @@ An automated market-maker for Polymarket prediction markets, built in Python
 
 A self-running research and surveillance system for solo market analysis
 
-<sub>9 write-ups</sub>
+<sub>10 write-ups</sub>
 
 ### [Hyperliquid Equity Bot](projects/hyperliquid-equity-bot.md)
 
 Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
 
-<sub>Python — 7 write-ups</sub>
+<sub>Python — 8 write-ups</sub>
 
 ### [Game Builder](projects/game-builder.md)
 
