@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/8a224e5 -->
+### When the reward structure is the risk
+
+Prediction market maker rewards — the bonuses paid to participants who keep prices liquid — are not evenly distributed. A small number of outlier events account for a disproportionate share of the total, which means any strategy that ignores that shape will look profitable in normal conditions and get quietly destroyed when it matters most.
+
+This commit recalibrates the bot's internal model to treat the distribution honestly: skewed, outlier-dominated, and close to dangerous if misread. The system now reasons about expected reward the way a statistician would rather than the way a spreadsheet average suggests it should.
+
+- Reward model corrected for outlier-dominated distributions, not naive averages
+- Prevents a strategy that looks safe on paper from failing at the worst moment
+
+<sub>Python · Prediction Markets</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/8a224e5 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/10d1d27 -->
 ### Widening the view before placing a bet
 
