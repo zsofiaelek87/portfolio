@@ -87,6 +87,19 @@ The consequence is quieter than it sounds: a system that knows the difference be
 
 ## What makes it interesting
 
+<!-- portfolio-entry:polymarket-bot/commit/ba43f61 -->
+### One edge, sized by reality not by code
+
+Most automated trading systems limit themselves in code — a hard ceiling written into the logic. This bot takes a different approach: it finds one well-measured edge and lets real-world constraints do the limiting. Capital availability and the capacity of the venues it trades on act as the natural governor, so the system never overreaches its own evidence.
+
+The consequence is a bot that stays honest about what it actually knows. It does not scale a signal beyond what the market will bear, and it cannot be tricked by its own ambition into a position the underlying edge does not support.
+
+- Position sizing governed by capital and venue capacity, not arbitrary code limits
+- Single measured edge: depth over breadth, signal over noise
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/ba43f61 -->
+
 - Adversarial pricing model: the bot prices quotes under the explicit assumption it will be deceived by informed traders.
 - Memory architecture that records only what the bot knew at decision time, preventing look-ahead contamination during backtesting.
 - Spread calibration loop that identified and corrected a systematic skew that was distorting every fill.
