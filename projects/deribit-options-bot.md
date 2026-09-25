@@ -15,6 +15,19 @@ Discretionary options traders spend hours each day gathering data, reviewing pos
 
 ## How it works
 
+<!-- portfolio-entry:deribit-options-bot/commit/1a89ab5 -->
+### Routing decisions to the models built to handle them
+
+Not every options strategy is structurally identical, and not every underlying model is equipped to reason about every kind. Rather than broadcasting a position idea to all available models and letting the results sort themselves out, the bot now routes each input only to the models whose design actually matches what is being asked. The practical effect: less wasted computation, fewer nonsense outputs from mismatched inputs, and a clearer audit trail of which model made which call.
+
+In an unattended trading system, garbage-in-garbage-out is not an abstract concern — it is a live position taken in the wrong direction. Matching the work to the right tool before anything executes is a quiet form of risk control.
+
+- Each strategy type reaches only the model built to evaluate it
+- Mismatched routing eliminated before a position is ever considered
+
+<sub>Python · Telegram</sub>
+<!-- /portfolio-entry:deribit-options-bot/commit/1a89ab5 -->
+
 1. Historical data spanning five years is fetched and validated before the system is permitted to enter any position.
 2. Each day the bot generates a structured self-review, summarising market conditions, open positions, and any anomalies.
 3. Before a study or backtest runs, the system checks whether the required data is present and complete, or returns an explicit refusal.
