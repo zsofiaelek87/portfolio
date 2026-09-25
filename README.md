@@ -54,7 +54,7 @@ Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
 
 Mobile game remixer for kids: describe a game idea, play it in seconds
 
-<sub>TypeScript — 1 write-up</sub>
+<sub>TypeScript — 2 write-ups</sub>
 
 ### [Elsobitcoinom Agents](projects/elsobitcoinom-agents.md)
 
