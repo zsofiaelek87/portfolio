@@ -36,7 +36,7 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 An automated market-maker for Polymarket prediction markets, built in Python
 
-<sub>Python — 27 write-ups</sub>
+<sub>Python — 28 write-ups</sub>
 
 ### [Marcus Edge](projects/marcusedge.md)
 
@@ -66,7 +66,7 @@ _No description yet._
 
 Route ideas through AI-guided PM review into GitHub pull requests automatically
 
-<sub>TypeScript</sub>
+<sub>TypeScript — 1 write-up</sub>
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
