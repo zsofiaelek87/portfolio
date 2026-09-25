@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/435d829 -->
+### A bot that knows when data is lying
+
+Prediction market bots live and die on the quality of their inputs. One subtle error buried in the commit history here: a result that looked like a profitable signal was actually the system bumping against an internal ceiling — the number reported was the cap on what the bot could return, not a genuine market price. Shipping this fix meant distinguishing between two things that look identical from the outside but mean completely different things for any decision that follows.
+
+That kind of data hygiene — refusing to act on a number that means something other than what it appears to mean — is unglamorous and almost impossible to spot without careful instrumentation. It is also exactly what separates a system that learns from one that confidently repeats the same mistake.
+
+- Identified a cap artifact masquerading as a real market signal
+- Prevents compounding decisions built on misread output values
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/435d829 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/f76fcc9 -->
 ### Measuring what actually drove the loss
 
