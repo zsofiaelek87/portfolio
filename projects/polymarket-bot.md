@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/f4aeeff -->
+### Measuring arbitrage by time, not just profit
+
+Spotting a price gap on a prediction market is only half the problem — if the gap closes before the trade settles, the edge was never real. This commit reframes how the bot measures opportunity: instead of asking only "how large is the discrepancy?", it now asks "how long does it survive?" Speed becomes a first-class signal alongside margin, so the system stops chasing edges that look good on paper but vanish before they can be captured.
+
+The consequence is a tighter filter. The bot learns to distinguish a durable inefficiency from a fleeting one, and only acts when the evidence supports both dimensions.
+
+- Opportunity size measured by lifespan, not just price difference
+- Filters out edges that close before a trade can settle
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/f4aeeff -->
+
 <!-- portfolio-entry:polymarket-bot/commit/8a224e5 -->
 ### When the reward structure is the risk
 
