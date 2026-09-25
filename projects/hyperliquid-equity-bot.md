@@ -11,50 +11,24 @@
 
 ## What it is
 
-Tokenized-equity perpetuals on Hyperliquid are a new and thinly-studied market where edge is unproven. This bot runs paper trades to measure whether a real edge exists before any real capital is committed. It is built for a solo operator who wants rigorous cost and risk accounting before scaling up.
+Tokenized-equity perpetuals are a new and illiquid market where edge is unproven and position sizing mistakes are costly. This bot explores two candidate strategies on Hyperliquid HIP-3 in paper-trading mode, measuring whether an edge exists before any real capital is committed. It is a solo research instrument, not a production trading system.
 
 ## How it works
 
-<!-- portfolio-entry:hyperliquid-equity-bot/commit/329fbe1 -->
-### Sizing positions from evidence, not assumptions
-
-Before this change, the bot decided how much capital to commit to each paper trade using a fixed internal limit — a constant that let positions through regardless of whether the underlying reasoning was sound. Now the system reads its own track record: each claim is funded in proportion to how well the evidence behind it has held up historically, not simply whether it clears a static threshold.
-
-The practical consequence is that a strategy the system has repeatedly gotten wrong is quietly starved of resources, while one with a strong record is backed more heavily — without anyone adjusting a dial by hand.
-
-- Position sizing tied to historical accuracy, not a fixed ceiling
-- Self-correcting allocation that tightens as evidence weakens
-
-<sub>Python · Hyperliquid</sub>
-<!-- /portfolio-entry:hyperliquid-equity-bot/commit/329fbe1 -->
-
-1. A backfill command seeds local price references for the past N hours from Hyperliquid.
-2. A scan pass evaluates open positions and candidate signals against two researched strategies.
-3. Position sizing is kept near the minimum allowed while the edge measurement is ongoing.
-4. Resting limit orders are placed rather than chasing the market price at execution time.
-5. A daily digest command aggregates the ledger and surfaces only signals that meet a confidence threshold.
-6. Portfolio gates, cost checks, and a self-suspension mechanism halt activity when conditions fall outside safe bounds.
+1. A backfill command seeds 48-hour price references from the Hyperliquid API.
+2. A run-once scan evaluates both strategies against current market conditions.
+3. An analyst component generates trade candidates and is graded before its output is acted on.
+4. Positions are sized using evidence gathered from prior scans rather than fixed assumptions.
+5. Resting limit orders are placed instead of market orders to avoid chasing the price.
+6. A daily digest surfaces only the signals that crossed a promotion threshold, with silence where confidence is absent.
 
 ## What makes it interesting
 
-<!-- portfolio-entry:hyperliquid-equity-bot/commit/cc1c2dd -->
-### Simulated trading on tokenized stock perpetuals
-
-Tokenized-equity perpetuals are a relatively new instrument: contracts that let you speculate on stock prices through a decentralized protocol, without touching a traditional brokerage. Before committing real capital to any strategy on this infrastructure, you want to know whether the logic actually works — so the bot runs in paper-trade mode, meaning it executes every decision against live market data, records every outcome, but never moves real money.
-
-The practical value is a honest track record built before the stakes are real. A strategy either earns the right to graduate or it doesn't.
-
-- Trades against live prices without touching real capital
-- Targets HIP-3 equity perps, a novel decentralized instrument class
-
-<sub>Python · Hyperliquid</sub>
-<!-- /portfolio-entry:hyperliquid-equity-bot/commit/cc1c2dd -->
-
-- Bounded minimum-size exploration: the bot deliberately trades at the smallest viable size so the bankroll is protected while the edge is being measured rather than assumed.
-- Honest silence over false confidence: the digest suppresses signals that do not meet a threshold, documented as a deliberate design decision rather than an oversight.
-- Self-suspension logic: the bot detects conditions where it should not trust its own signals and stops acting, covering both low-confidence market states and pre-news windows.
-- Critical signal promotion: only signals that clear a severity bar are surfaced in the daily digest, reducing noise from a high-frequency scan cadence.
-- Zero runtime dependencies: the entire system runs on the Python standard library, eliminating supply-chain risk and simplifying deployment.
+- Analyst grading gate: the signal source is scored on past accuracy before its questions are trusted, preventing a degraded model from influencing sizing.
+- Bounded minimum-size exploration: edge is measured with the smallest permitted position, capping research cost while accumulating real fill data.
+- Explicit stop-exploring logic: a separate gate halts new entries when cumulative evidence does not support continued exploration.
+- Pre-event step-back: the bot recognises scheduled news windows and withholds orders rather than trading into known information risk.
+- Honest silence in the digest: signals that do not meet the promotion threshold are suppressed entirely rather than reported with low-confidence labels.
 
 ## Stack
 
