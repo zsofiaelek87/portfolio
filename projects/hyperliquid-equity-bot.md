@@ -24,6 +24,19 @@ Tokenized-equity perpetuals on Hyperliquid are a new and thinly-studied market w
 
 ## What makes it interesting
 
+<!-- portfolio-entry:hyperliquid-equity-bot/commit/cc1c2dd -->
+### Simulated trading on tokenized stock perpetuals
+
+Tokenized-equity perpetuals are a relatively new instrument: contracts that let you speculate on stock prices through a decentralized protocol, without touching a traditional brokerage. Before committing real capital to any strategy on this infrastructure, you want to know whether the logic actually works — so the bot runs in paper-trade mode, meaning it executes every decision against live market data, records every outcome, but never moves real money.
+
+The practical value is a honest track record built before the stakes are real. A strategy either earns the right to graduate or it doesn't.
+
+- Trades against live prices without touching real capital
+- Targets HIP-3 equity perps, a novel decentralized instrument class
+
+<sub>Python · Hyperliquid</sub>
+<!-- /portfolio-entry:hyperliquid-equity-bot/commit/cc1c2dd -->
+
 - Bounded minimum-size exploration: the bot deliberately trades at the smallest viable size so the bankroll is protected while the edge is being measured rather than assumed.
 - Honest silence over false confidence: the digest suppresses signals that do not meet a threshold, documented as a deliberate design decision rather than an oversight.
 - Self-suspension logic: the bot detects conditions where it should not trust its own signals and stops acting, covering both low-confidence market states and pre-news windows.
