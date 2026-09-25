@@ -167,6 +167,19 @@ Python
 
 ## Recently shipped
 
+<!-- portfolio-entry:polymarket-bot/commit/fd88831 -->
+### Giving the analyst a clear view of position structure
+
+Prediction markets let you trade in bundles — groups of related positions, sometimes called "arms," that together express a single bet across multiple outcomes. When a bot manages several of these at once, it becomes easy to lose track of what each bundle actually represents. This commit surfaces that structure explicitly: the analyst dashboard now labels each arm in plain terms so the person reviewing the bot's activity can see what it is committed to without having to reconstruct the logic from raw numbers.
+
+It is a small addition with a meaningful consequence — oversight only works when the thing being watched is legible.
+
+- Position bundles labeled in plain terms, not raw contract data
+- Analyst view reflects actual structure of each active bot
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/fd88831 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/3401531 -->
 ### Closing the one gap in reward measurement
 
