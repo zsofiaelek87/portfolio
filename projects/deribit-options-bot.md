@@ -48,6 +48,19 @@ Python
 
 ## Recently shipped
 
+<!-- portfolio-entry:deribit-options-bot/commit/2f2821f -->
+### Per-lane grading for the options analyst
+
+An options analyst — the part of the bot that proposes trades by reading market conditions — now gets its questions evaluated category by category rather than as a single pass-or-fail judgment. Think of it as a scorecard with rows: each type of question the analyst asks is assessed on its own terms, so a weak question in one lane cannot hide behind strong answers in another.
+
+The practical consequence is sharper accountability. When a trade idea is rejected, the system knows exactly which dimension failed, making it possible to improve the analyst's reasoning without guessing which part to fix.
+
+- Each question category judged independently, not averaged away
+- Failures are localized — the system knows which lane underperformed
+
+<sub>Python · Telegram</sub>
+<!-- /portfolio-entry:deribit-options-bot/commit/2f2821f -->
+
 <!-- portfolio-entry:deribit-options-bot/commit/b927ca4 -->
 ### Five years of data before risking a trade
 
