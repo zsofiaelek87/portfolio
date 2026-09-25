@@ -48,7 +48,7 @@ A self-running research and surveillance system for solo market analysis
 
 Paper-trade tokenized-equity perpetual contracts on Hyperliquid protocol
 
-<sub>Python — 8 write-ups</sub>
+<sub>Python — 9 write-ups</sub>
 
 ### [Game Builder](projects/game-builder.md)
 
