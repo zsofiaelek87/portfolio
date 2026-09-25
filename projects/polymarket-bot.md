@@ -114,6 +114,19 @@ Python
 
 ## Recently shipped
 
+<!-- portfolio-entry:polymarket-bot/commit/3401531 -->
+### Closing the one gap in reward measurement
+
+Prediction markets have two ways to participate: you can cross the spread and take a price immediately, or you can post a standing offer and wait for the market to come to you — earning a small reward for providing liquidity. Earlier versions of this bot measured the first path carefully and left the second almost entirely unexamined. This commit closes that blind spot by building out the accounting for maker rewards specifically, so the system knows whether its passive orders are contributing or quietly underperforming.
+
+Without that measurement, the bot could have been leaving consistent value on the table — or collecting it — with no way to tell the difference.
+
+- Maker-side reward performance now tracked and attributed independently
+- Fills the last unmeasured category in the bot's performance accounting
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/3401531 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/46d09a1 -->
 ### When volatility itself becomes the signal
 
