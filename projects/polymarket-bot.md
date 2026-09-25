@@ -15,6 +15,19 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/f76fcc9 -->
+### Measuring what actually drove the loss
+
+Prediction market fills — the actual prices at which a trade executes — have two sides: the passive side, which waits for the market to come to it, and the active side, which crosses the spread and pays a cost to get filled immediately. Earlier measurement was only tracking one of them. This commit corrects that by attributing performance to the maker side specifically, so the system knows whether a fill was profitable because of good positioning or in spite of bad execution.
+
+The distinction matters because each side responds to different fixes. Measuring both means the bot can stop guessing which lever to pull.
+
+- Separates passive and active fill costs so each can be diagnosed independently
+- Prevents the system from optimising the wrong side of a losing trade
+
+<sub>Python · Polymarket</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/f76fcc9 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/f4aeeff -->
 ### Measuring arbitrage by time, not just profit
 
