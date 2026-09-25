@@ -23,6 +23,20 @@ Children struggle to turn game ideas into something playable without learning to
 
 ## What makes it interesting
 
+<!-- portfolio-entry:game-builder/general/69b1567 -->
+### A child describes a game, AI builds it immediately
+
+A child types something like "a space shooter where the enemies get faster every wave" and, within seconds, a playable game appears — no code written, no tools installed, no adult required. Under the hood, a prompt coach (a conversational layer that asks clarifying questions before anything is generated) refines the idea, and a deterministic mapping — meaning the same description always produces the same game, reliably — selects and configures one of several ready-made game templates. The finished game gets its own shareable link anyone can open in a browser.
+
+Six distinct game types are supported so far, from side-scrolling runners to a Vampire Survivors-style survival mode, each with its own procedurally generated levels, enemy waves, or power-ups. If the AI service is unreachable, the system falls back to local logic rather than failing silently.
+
+- Same description always produces the same game — no randomness, no surprises
+- Prompt coach refines vague ideas before the engine commits to a design
+- Finished games get a public link, no account required to play
+
+<sub>TypeScript · React · Phaser · Gemini AI · Firestore · Vite</sub>
+<!-- /portfolio-entry:game-builder/general/69b1567 -->
+
 - Prompt Coach has a local fallback: the app is fully functional without a Gemini API key, so it degrades gracefully rather than breaking.
 - End-to-end pipeline converts a child's natural-language sentence into a live Phaser 3 game session — the write-up singles this out as the core engineering challenge.
 - PWA architecture means the game studio installs and runs on a phone like a native app with no App Store dependency.
