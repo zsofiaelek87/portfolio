@@ -64,6 +64,19 @@ Python
 
 ## Recently shipped
 
+<!-- portfolio-entry:hyperliquid-equity-bot/commit/0de4c60 -->
+### Grading the analyst before trusting its questions
+
+Before this commit, the bot's internal analyst could ask any question it liked about the market — and the system had no way to know whether that line of questioning was actually useful. Now every question is scored against how well the analyst's past forecasts (its earlier probability estimates) turned out to match reality. Questions from an analyst with a poor track record carry less weight than questions from one that has been right.
+
+The practical consequence is self-correcting curiosity: the system naturally routes its attention toward the kinds of questions that have historically produced good predictions, and away from the ones that sound plausible but go nowhere.
+
+- Analyst questions weighted by the accuracy of past forecasts
+- Poor-track-record reasoning is down-weighted automatically, not manually filtered
+
+<sub>Python</sub>
+<!-- /portfolio-entry:hyperliquid-equity-bot/commit/0de4c60 -->
+
 <!-- portfolio-entry:hyperliquid-equity-bot/commit/b00b75c -->
 ### Sizing up before the signal is certain
 
