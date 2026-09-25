@@ -15,6 +15,17 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/10d1d27 -->
+### Widening the view before placing a bet
+
+Arbitrage on prediction markets — finding the same question priced differently across venues and profiting from the gap — only works if the bot can see enough of the market at once. This commit expanded the search from a narrow slice to twelve distinct ladders across nearly six hundred individual price levels. A ladder here is one layer of the order book, the ranked list of what buyers and sellers are currently willing to accept. Looking at more of them means the bot catches opportunities that were previously invisible simply because it was not looking in the right place.
+
+- Search coverage expanded from a narrow slice to 12 full order-book ladders
+- 594 price levels now evaluated per scan, versus a fraction of that before
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/10d1d27 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/14ab796 -->
 ### A constraint that nobody knew was drifting
 
