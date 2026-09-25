@@ -15,6 +15,19 @@ Tokenized-equity perpetuals on Hyperliquid are a new and thinly-studied market w
 
 ## How it works
 
+<!-- portfolio-entry:hyperliquid-equity-bot/commit/329fbe1 -->
+### Sizing positions from evidence, not assumptions
+
+Before this change, the bot decided how much capital to commit to each paper trade using a fixed internal limit — a constant that let positions through regardless of whether the underlying reasoning was sound. Now the system reads its own track record: each claim is funded in proportion to how well the evidence behind it has held up historically, not simply whether it clears a static threshold.
+
+The practical consequence is that a strategy the system has repeatedly gotten wrong is quietly starved of resources, while one with a strong record is backed more heavily — without anyone adjusting a dial by hand.
+
+- Position sizing tied to historical accuracy, not a fixed ceiling
+- Self-correcting allocation that tightens as evidence weakens
+
+<sub>Python · Hyperliquid</sub>
+<!-- /portfolio-entry:hyperliquid-equity-bot/commit/329fbe1 -->
+
 1. A backfill command seeds local price references for the past N hours from Hyperliquid.
 2. A scan pass evaluates open positions and candidate signals against two researched strategies.
 3. Position sizing is kept near the minimum allowed while the edge measurement is ongoing.
