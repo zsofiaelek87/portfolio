@@ -13,6 +13,20 @@ Manually tracking trade rules, editorial disclosures, and suspicious market acti
 
 ## How it works
 
+<!-- portfolio-entry:marcusedge/commit/80fb4c8 -->
+### A trading bot that earns its own promotion
+
+Earning the right to trade is harder than it sounds. Every new bundle strategy — a group of related positions that together express a single market view — starts in simulation, where it paper-trades against live markets, logs the questions it asks, and builds a track record. Promotion to active use requires a human to review that record and explicitly approve it. No automatic graduation, no quiet escalation.
+
+The question register is the accountability layer: every line of inquiry the system pursues is captured, so a reviewer can see not just what the bot decided but what it was curious about along the way.
+
+- New strategies run in simulation and promote only on explicit human approval
+- A question register logs every line of inquiry for review
+- Simulated arms mirror live market structure, keeping the test honest
+
+<sub>Python · Prediction Markets · Simulation · Automated Trading</sub>
+<!-- /portfolio-entry:marcusedge/commit/80fb4c8 -->
+
 1. Planning documents are ingested and converted into tracked system logic the codebase can enforce.
 2. Trade rules are encoded directly in code so compliance is testable, not just documented.
 3. A daily screener runs unattended, applying configured criteria across the full universe of instruments.
