@@ -15,6 +15,33 @@ Prediction markets reward accurate pricing, but they also attract informed trade
 
 ## How it works
 
+<!-- portfolio-entry:polymarket-bot/commit/a1dcb4c -->
+### A bot that knows when it was wrong
+
+Pair completion — closing the second half of a two-sided trade — was firing correctly. The loss was happening earlier, in the fill itself. This commit isolates exactly where in the sequence value was leaking: not at the exit, not in the signal, but in the moment the position was acquired.
+
+That distinction matters because the fix is different in each case. A system that can tell those failure modes apart is harder to fool — and harder to quietly bleed.
+
+- Fault localisation traced to fill stage, not exit logic
+- Prevents misattributed fixes from masking the real source of loss
+
+<sub>Python</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/a1dcb4c -->
+
+<!-- portfolio-entry:polymarket-bot/commit/6847654 -->
+### Saves more by refusing bad exits
+
+Prediction markets have two sides to every trade: a passive side (maker) that waits for someone to come to you, and an active side (taker) that crosses the gap and pays for the privilege. This commit locks in the maker position as the default entry — capturing roughly 4% that would otherwise be surrendered immediately — and sets a hard ceiling on how far a signal's odds can move before the system simply stops acting on it rather than chasing a deteriorating bet.
+
+The underlying logic is a constraint, not a calculation: when the evidence for a trade weakens past a defined threshold, the bot does nothing. Discipline by refusal.
+
+- Maker-side entry recovers ~4% that aggressive order placement would give away
+- A signal that moves 2–3x against expectations is treated as failed, not retried
+- No new model — just tighter rules on when the system is allowed to act
+
+<sub>Python · Prediction Markets</sub>
+<!-- /portfolio-entry:polymarket-bot/commit/6847654 -->
+
 <!-- portfolio-entry:polymarket-bot/commit/435d829 -->
 ### A bot that knows when data is lying
 
