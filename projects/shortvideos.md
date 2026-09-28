@@ -15,6 +15,19 @@ Producing short video content consistently is a scheduling, scripting, and publi
 
 ## How it works
 
+<!-- portfolio-entry:shortvideos/commit/09c6573 -->
+### Production only runs on approved content
+
+Automating video production end to end creates a specific risk: the pipeline publishes before the content is ready. This commit puts a gate in front of it. A video built around a particular article cannot enter production until that article has been explicitly approved — meaning the system is not just automated, it is bounded. It moves fast when it should and holds still when it should.
+
+For a solo creator shipping without a review team, that distinction is the difference between a pipeline you can trust to run overnight and one you have to babysit.
+
+- Production is blocked automatically until source content clears editorial approval
+- The gate is per-article, so approved work flows without delay
+
+<sub>TypeScript</sub>
+<!-- /portfolio-entry:shortvideos/commit/09c6573 -->
+
 1. A planner schedules posts using a reach-first strategy that picks optimal distribution windows.
 2. A narration layer scripts and voices content while explicitly representing what it does not know.
 3. A shuffle algorithm sequences clips or segments and produces a verifiable proof of its own fairness.
