@@ -18,7 +18,7 @@ A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
 
 An automated short-video production system built for solo distribution
 
-<sub>TypeScript — 5 write-ups</sub>
+<sub>TypeScript — 6 write-ups</sub>
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
