@@ -50,6 +50,19 @@ TypeScript
 
 ## Recently shipped
 
+<!-- portfolio-entry:shortvideos/commit/9bc2583 -->
+### Videos that learn from what audiences keep
+
+After a short video is published, the system watches what happens to it — specifically, how long viewers actually stay — and feeds that signal back into the decisions the pipeline makes next time. This is post-publication retention learning: the production engine does not treat each video as a finished, isolated object but as evidence about what is worth doing again.
+
+For a solo creator with no analytics team, it means the system grows slightly more useful with every upload, calibrating future production choices against real audience behavior rather than guesswork.
+
+- Audience watch-time feeds back into future production decisions automatically
+- No analyst needed — the pipeline reads its own results and adjusts
+
+<sub>TypeScript</sub>
+<!-- /portfolio-entry:shortvideos/commit/9bc2583 -->
+
 <!-- portfolio-entry:shortvideos/commit/509f75d -->
 ### Podcast narration that owns its uncertainty
 
