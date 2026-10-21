@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> Local CRM pipeline for IT recruiters prospecting into new markets
+> Local sales intelligence and outreach CRM for an IT recruitment agency
 
 ## What it is
 
-Finding the right contact at the right company and sending a credible first email takes hours of manual work that most CRM tools do not reduce. Recruit Lead Engine is a free, self-hosted sales intelligence system built for a solo recruiter expanding an IT staffing business into Western Europe. It handles lead scoring, contact discovery, outreach drafting, and send-queue management without paid APIs or a cloud backend.
+Recruiters waste time switching between spreadsheets, email clients, and LinkedIn with no single view of who to contact or why. Recruit Lead Engine is a free, self-hosted pipeline that scores company leads, identifies the right contacts, generates outreach drafts, and tracks every message sent. It is built for a solo sales manager running outbound into new markets without a paid CRM or data subscription.
 
 ## How it works
 
-1. Companies are added to a local JSON file and scanned by a scoring engine that grades each lead A–C on signals such as open-role count, role age, and tech-stack difficulty.
-2. A daily action queue is generated from the scored leads, surfacing which companies to contact today versus later in the week.
-3. A local contact-finder script resolves missing names and email candidates for each target company.
-4. Outreach drafts are generated from templates and queued for review in a hosted Firebase UI.
-5. Approved emails are sent in small batches through a local PowerShell script that drives Outlook Web, keeping sends human-paced.
-6. Reply status, follow-up timing, and send history are tracked in Firestore so the queue always reflects the current state of each conversation.
+1. Companies are added via a JSON import file and ingested by a local scan script that deduplicates and applies lead scoring automatically.
+2. The scoring engine rates each company 0–100 across signals such as open role count, role age, tech stack difficulty, and company size, then assigns an A/B/C/Ignore tier.
+3. A contact-finder script identifies people to reach at each company and writes them to a local contacts file.
+4. A daily action queue is generated from scored leads and contact status, surfacing exactly who to email that day.
+5. Outreach drafts are produced locally and queued through a hosted Firebase UI; emails are sent in small batches via a PowerShell script through Outlook Web.
+6. All outreach status, replies, and follow-up state are tracked in local JSON files and reflected in the hosted dashboard.
 
 ## What makes it interesting
 
-- Deduplication guard ensures the same email is never queued or sent twice, enforced at the draft stage before any message reaches the send queue.
-- Built-in queue guardrails on the contact-discovery step limit how many candidates are surfaced per company, preventing contact-list bloat from stalling the pipeline.
-- A quiet-period rule suppresses outreach automatically when a recipient has already replied or a follow-up sequence has reached its limit, protecting every contact in the database.
-- Outreach drafts go through a validation pass that refuses to release a message flagged as malformed or incomplete, keeping human review the final gate.
-- The pipeline is statically exported at build time—no server required—and deployed to Firebase Hosting for free, with all mutable state held in local JSON or Firestore.
+- Deduplication and send-uniqueness guardrails are enforced at the engine level so the same email is never sent twice to the same recipient.
+- Contact discovery runs with built-in queue guardrails that limit how many contacts are surfaced per company per run, preventing accidental bulk targeting.
+- A quiet-rule layer decides when outreach should pause—follow-up sequences know when to stop rather than relying on a manual cutoff.
+- Outreach drafts include pre-flight validation that refuses to release a message if required conditions are not met, surfacing actionable failure messages instead.
+- The entire dashboard is a static Next.js export deployed to Firebase Hosting with no server, keeping all data local and eliminating API costs.
 
 ## Stack
 
-TypeScript · Next.js · Firebase Hosting · Firestore · Python · PowerShell
+TypeScript · Next.js · Firebase Hosting · Firestore · PowerShell · Python · Outlook Web
 
 <!-- /portfolio:overview -->
 
