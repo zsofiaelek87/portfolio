@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
+> A monorepo of two Hungarian study apps for kids, deployed separately from one repo
 
 ## What it is
 
-Young children studying Hungarian reading and third-grade science need practice that feels like a game, not a worksheet. This monorepo houses two separate web apps—one per child, one per subject—each with its own Firebase project and parent dashboard. A single repository and shared CI/CD pipeline lets one builder maintain both without duplicating infrastructure.
+Keeping two children on track with their schoolwork means juggling different subjects, age levels, and content update cycles. This monorepo houses two independent Firebase-hosted study apps—one for third-grade science, one for early reading—so both can be maintained and deployed from a single GitHub repository. It is built for a parent who wants to update lesson content once and have it go live instantly, on any device, without managing two separate codebases.
 
 ## How it works
 
-1. Content is authored once inside each sub-app and published instantly to both live URLs.
-2. A daily mission flow guides each learner through lessons step by step.
-3. Quiz interactions run as a game loop tuned for the target age group.
-4. A PIN-protected parent dashboard surfaces progress without exposing the admin surface to kids.
-5. On push to main, path-filtered GitHub Actions workflows deploy only the app whose files changed.
-6. Both apps cache assets for offline use so sessions survive without a connection.
+1. Content is authored inside each app's sub-directory following per-app lesson editing conventions.
+2. A push to main triggers path-filtered GitHub Actions workflows that deploy only the app whose files changed.
+3. Each app's Firebase credentials and admin PIN are injected at build time from GitHub Secrets, keeping config out of source.
+4. Vite builds the TypeScript app into a static dist/ folder, which Firebase Hosting serves as a single-page app.
+5. A PIN-protected parent dashboard controls settings and progress without requiring a user account.
+6. Both apps cache content locally so learners can continue offline on any device.
 
 ## What makes it interesting
 
-- Path-filtered CI: changes under `orsi-studyapp/**` and `matyi-studyapp/**` trigger independent deploy workflows, so a content edit to one app never risks redeploying the other.
-- Secrets are namespaced per project (`ORSI_` / `MATYI_` prefixes), keeping two Firebase environments isolated inside one repo without leaking credentials across apps.
-- A switchable `STORAGE_MODE` secret (`local` or `firebase`) lets each app run fully offline or against Firestore without a code change.
-- AI-generated content pipeline used to produce lesson material, reducing the per-lesson authoring cost for a solo builder.
-- Lesson worlds are designed for re-engagement: richer environments and a structured daily mission flow address the retention problem common in children's drill apps.
+- Path-filtered CI: separate deploy-orsi.yml and deploy-matyi.yml workflows fire only when their respective subtree changes, preventing unnecessary cross-app deploys.
+- Per-app secret namespacing (ORSI_ / MATYI_ prefixes) isolates two entirely separate Firebase projects inside one repo without credential bleed.
+- Offline-first architecture lets both apps run without a network connection on any device.
+- AI-generated lesson content pipeline cuts the cost of keeping curriculum fresh across two subjects and age groups.
+- A daily mission flow structures each session so a young learner can navigate independently without a parent present.
 
 ## Stack
 
-TypeScript · Firebase Hosting · Firebase Firestore · GitHub Actions
+TypeScript · Firebase Hosting · GitHub Actions
 
 <!-- /portfolio:overview -->
 
