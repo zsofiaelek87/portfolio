@@ -4,7 +4,7 @@
 
 ### [Robinhood Chain Bot](projects/robinhood-chain.md)
 
-A Python bot that measures on-chain liquidity and executes informed trading decisions
+A Python bot that reads on-chain liquidity data to inform trading decisions
 
 <sub>Python — 10 write-ups</sub>
 
