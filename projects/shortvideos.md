@@ -7,40 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> An automated short-video production system built for solo distribution
+> A self-running short video engine that learns from audience retention
 
 ## What it is
 
-Producing short video content consistently is a scheduling, scripting, and publishing problem all at once. This system automates the full pipeline from narration to posting, so one person can run a video channel without a production team. It is built for a solo builder who wants output volume without operational overhead.
+Producing short video content consistently is bottlenecked by manual decisions at every step — what to make, when to post, and whether it is working. This system automates the full production pipeline, from content approval through scheduling, and tightens the loop by feeding audience retention signals back into what gets made next. It is built for a solo operator who wants output without a team.
 
 ## How it works
 
-<!-- portfolio-entry:shortvideos/commit/09c6573 -->
-### Production only runs on approved content
-
-Automating video production end to end creates a specific risk: the pipeline publishes before the content is ready. This commit puts a gate in front of it. A video built around a particular article cannot enter production until that article has been explicitly approved — meaning the system is not just automated, it is bounded. It moves fast when it should and holds still when it should.
-
-For a solo creator shipping without a review team, that distinction is the difference between a pipeline you can trust to run overnight and one you have to babysit.
-
-- Production is blocked automatically until source content clears editorial approval
-- The gate is per-article, so approved work flows without delay
-
-<sub>TypeScript</sub>
-<!-- /portfolio-entry:shortvideos/commit/09c6573 -->
-
-1. A planner schedules posts using a reach-first strategy that picks optimal distribution windows.
-2. A narration layer scripts and voices content while explicitly representing what it does not know.
-3. A shuffle algorithm sequences clips or segments and produces a verifiable proof of its own fairness.
-4. The production engine assembles final video assets and triggers its own next run without manual intervention.
-5. Finished videos are handed off to the posting layer, which executes the pre-planned distribution schedule.
+1. Content enters the pipeline only after passing an approval gate that prevents unapproved material from reaching production.
+2. Approved content is narrated using a voice layer that signals its own confidence rather than asserting false certainty.
+3. The video production engine assembles and renders clips without manual intervention.
+4. A reach-first planner decides posting order and timing to maximise distribution.
+5. Retention data from published videos feeds back into the system to weight future content selection.
+6. A fair-shuffle algorithm with verifiable output determines content sequencing without silent bias.
 
 ## What makes it interesting
 
-- Narration is designed to own its uncertainty — the system signals low-confidence claims rather than asserting them flatly.
-- The shuffle mechanism is auditable: it generates a proof so the ordering can be verified as fair after the fact.
-- The production engine is self-invoking, eliminating the manual step between finished asset and next scheduled run.
-- The posting planner encodes reach strategy at the planning stage rather than leaving timing as an afterthought.
-- Voice comprehension is regression-tested against real broadcast audio, not synthetic or clean-room samples.
+- Production gate enforces an approved-content contract, so the render pipeline cannot run on unreviewed material by accident.
+- Podcast narration layer expresses uncertainty explicitly rather than presenting all output with equal confidence.
+- Shuffle algorithm is designed to prove its own fairness, making sequencing decisions auditable rather than opaque.
+- Planner encodes a reach-first strategy as a first-class scheduling concern, not a manual afterthought.
+- Voice comprehension is validated against real broadcast audio, grounding accuracy claims in practical conditions.
 
 ## Stack
 
