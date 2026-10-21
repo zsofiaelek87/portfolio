@@ -22,7 +22,7 @@ A self-running short video engine that learns from audience retention
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-Local CRM pipeline for IT recruiters prospecting into new markets
+Local sales intelligence and outreach CRM for an IT recruitment agency
 
 <sub>TypeScript — 18 write-ups</sub>
 
