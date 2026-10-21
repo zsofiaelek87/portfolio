@@ -16,7 +16,7 @@ A monorepo of two Hungarian study apps for kids, deployed separately from one re
 
 ### [Short Videos](projects/shortvideos.md)
 
-An automated short-video production system built for solo distribution
+A self-running short video engine that learns from audience retention
 
 <sub>TypeScript — 7 write-ups</sub>
 
