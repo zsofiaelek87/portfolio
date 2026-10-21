@@ -10,7 +10,7 @@ A Python bot that reads on-chain liquidity data to inform trading decisions
 
 ### [Study App](projects/studyapp.md)
 
-A monorepo delivering two Hungarian study apps to kids via Firebase Hosting
+A monorepo of two Hungarian study apps for kids, deployed separately from one repo
 
 <sub>TypeScript — 6 write-ups</sub>
 
