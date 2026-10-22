@@ -70,7 +70,7 @@ Routes rough ideas through a PM gatekeeper to reviewed GitHub PRs with configura
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
-Trade cryptocurrency options volatility risk premium using defined-risk structures via Telegram control
+Automated options trading system for Deribit with model-routed decision making
 
 <sub>Python — 6 write-ups</sub>
 
