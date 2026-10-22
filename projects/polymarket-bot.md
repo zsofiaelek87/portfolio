@@ -7,157 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> An automated market-maker for Polymarket prediction markets, built in Python
+> Automated prediction-market trading bot with self-correcting risk and reward logic
 
 ## What it is
 
-Prediction markets reward accurate pricing, but they also attract informed traders who will take the other side of any mispriced quote. This bot acts as an automated market-maker on Polymarket, quoting both sides of binary markets while managing the real risk of being picked off by better-informed participants. It is a solo engineering project focused on robust pricing logic, position accountability, and honest self-evaluation.
+Prediction markets reward fast, accurate pricing of real-world events, but they also punish sloppy position management and corrupted data. This bot automates trading on Polymarket for a solo operator who wants disciplined entries, exits, and sizing without manual oversight. It is built to catch its own mistakes rather than repeat them.
 
 ## How it works
 
-<!-- portfolio-entry:polymarket-bot/commit/a1dcb4c -->
-### A bot that knows when it was wrong
-
-Pair completion — closing the second half of a two-sided trade — was firing correctly. The loss was happening earlier, in the fill itself. This commit isolates exactly where in the sequence value was leaking: not at the exit, not in the signal, but in the moment the position was acquired.
-
-That distinction matters because the fix is different in each case. A system that can tell those failure modes apart is harder to fool — and harder to quietly bleed.
-
-- Fault localisation traced to fill stage, not exit logic
-- Prevents misattributed fixes from masking the real source of loss
-
-<sub>Python</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/a1dcb4c -->
-
-<!-- portfolio-entry:polymarket-bot/commit/6847654 -->
-### Saves more by refusing bad exits
-
-Prediction markets have two sides to every trade: a passive side (maker) that waits for someone to come to you, and an active side (taker) that crosses the gap and pays for the privilege. This commit locks in the maker position as the default entry — capturing roughly 4% that would otherwise be surrendered immediately — and sets a hard ceiling on how far a signal's odds can move before the system simply stops acting on it rather than chasing a deteriorating bet.
-
-The underlying logic is a constraint, not a calculation: when the evidence for a trade weakens past a defined threshold, the bot does nothing. Discipline by refusal.
-
-- Maker-side entry recovers ~4% that aggressive order placement would give away
-- A signal that moves 2–3x against expectations is treated as failed, not retried
-- No new model — just tighter rules on when the system is allowed to act
-
-<sub>Python · Prediction Markets</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/6847654 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/435d829 -->
-### A bot that knows when data is lying
-
-Prediction market bots live and die on the quality of their inputs. One subtle error buried in the commit history here: a result that looked like a profitable signal was actually the system bumping against an internal ceiling — the number reported was the cap on what the bot could return, not a genuine market price. Shipping this fix meant distinguishing between two things that look identical from the outside but mean completely different things for any decision that follows.
-
-That kind of data hygiene — refusing to act on a number that means something other than what it appears to mean — is unglamorous and almost impossible to spot without careful instrumentation. It is also exactly what separates a system that learns from one that confidently repeats the same mistake.
-
-- Identified a cap artifact masquerading as a real market signal
-- Prevents compounding decisions built on misread output values
-
-<sub>Python</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/435d829 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/f76fcc9 -->
-### Measuring what actually drove the loss
-
-Prediction market fills — the actual prices at which a trade executes — have two sides: the passive side, which waits for the market to come to it, and the active side, which crosses the spread and pays a cost to get filled immediately. Earlier measurement was only tracking one of them. This commit corrects that by attributing performance to the maker side specifically, so the system knows whether a fill was profitable because of good positioning or in spite of bad execution.
-
-The distinction matters because each side responds to different fixes. Measuring both means the bot can stop guessing which lever to pull.
-
-- Separates passive and active fill costs so each can be diagnosed independently
-- Prevents the system from optimising the wrong side of a losing trade
-
-<sub>Python · Polymarket</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/f76fcc9 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/f4aeeff -->
-### Measuring arbitrage by time, not just profit
-
-Spotting a price gap on a prediction market is only half the problem — if the gap closes before the trade settles, the edge was never real. This commit reframes how the bot measures opportunity: instead of asking only "how large is the discrepancy?", it now asks "how long does it survive?" Speed becomes a first-class signal alongside margin, so the system stops chasing edges that look good on paper but vanish before they can be captured.
-
-The consequence is a tighter filter. The bot learns to distinguish a durable inefficiency from a fleeting one, and only acts when the evidence supports both dimensions.
-
-- Opportunity size measured by lifespan, not just price difference
-- Filters out edges that close before a trade can settle
-
-<sub>Python</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/f4aeeff -->
-
-<!-- portfolio-entry:polymarket-bot/commit/8a224e5 -->
-### When the reward structure is the risk
-
-Prediction market maker rewards — the bonuses paid to participants who keep prices liquid — are not evenly distributed. A small number of outlier events account for a disproportionate share of the total, which means any strategy that ignores that shape will look profitable in normal conditions and get quietly destroyed when it matters most.
-
-This commit recalibrates the bot's internal model to treat the distribution honestly: skewed, outlier-dominated, and close to dangerous if misread. The system now reasons about expected reward the way a statistician would rather than the way a spreadsheet average suggests it should.
-
-- Reward model corrected for outlier-dominated distributions, not naive averages
-- Prevents a strategy that looks safe on paper from failing at the worst moment
-
-<sub>Python · Prediction Markets</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/8a224e5 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/10d1d27 -->
-### Widening the view before placing a bet
-
-Arbitrage on prediction markets — finding the same question priced differently across venues and profiting from the gap — only works if the bot can see enough of the market at once. This commit expanded the search from a narrow slice to twelve distinct ladders across nearly six hundred individual price levels. A ladder here is one layer of the order book, the ranked list of what buyers and sellers are currently willing to accept. Looking at more of them means the bot catches opportunities that were previously invisible simply because it was not looking in the right place.
-
-- Search coverage expanded from a narrow slice to 12 full order-book ladders
-- 594 price levels now evaluated per scan, versus a fraction of that before
-
-<sub>Python</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/10d1d27 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/14ab796 -->
-### A constraint that nobody knew was drifting
-
-Automated trading systems accumulate rules over time, and some of those rules quietly stop meaning what anyone thought they meant. This commit adds an observation layer that watches for a constraint behaving unexpectedly — not crashing, not throwing an error, just silently producing outcomes nobody intended — and surfaces it before the bot acts on a mistaken assumption.
-
-In an unattended market-maker, a rule that drifts without complaint is more dangerous than one that fails loudly. Catching the quiet kind is harder, and worth more.
-
-- Detects constraint drift before it reaches a live trading decision
-- Surfaces unintended behaviour without requiring a crash or error first
-
-<sub>Python · Polymarket</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/14ab796 -->
-
-<!-- portfolio-entry:polymarket-bot/commit/ebcc262 -->
-### Counting observations, not just rows
-
-Prediction markets generate data that can lie about itself: the same underlying event can appear in multiple rows, making a naive tally overconfident about how much the bot actually knows. This commit changes the unit of measurement from database rows to independent observations — distinct, non-overlapping signals — so the bot's confidence in any given price reflects how many genuinely separate data points support it, not how many times the same information was recorded.
-
-The consequence is quieter than it sounds: a system that knows the difference between one observation seen ten times and ten genuinely separate observations makes meaningfully different decisions at the margin.
-
-- Confidence scores now reflect independent signal count, not raw data volume
-- Prevents repeated observations from inflating the bot's certainty about a price
-
-<sub>Python · Polymarket</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/ebcc262 -->
-
-1. The bot scans available markets and selects lanes worth quoting based on volatility and activity signals.
-2. It computes bid and ask prices, embedding assumptions about adversarial flow and spread requirements into every quote.
-3. Quotes are posted and continuously revised as market conditions change, with spread corrections applied when fills are skewing.
-4. Every position is tagged with its own paper trail so the source of each fill can be reviewed independently.
-5. Behavioural detectors run inside every digest layer to flag manipulation, mispricing, or unexpected patterns.
-6. Performance is graded on the quality of reasoning behind each prediction, not just whether the outcome was correct.
+1. Market data is ingested and validated before any signal is trusted, filtering observations that are statistically lying.
+2. A pre-trade view widens context across related positions so no bet is placed in isolation.
+3. Signals are sized by real observed edge, not by what the code assumes the edge to be.
+4. The bot evaluates arbitrage opportunities by time exposure as well as raw profit margin.
+5. Exits are gated by a refusal mechanism that blocks withdrawals when closing would destroy more value than holding.
+6. After each trade, the system attributes the loss or gain to the actual driver and logs where its prior reasoning was wrong.
 
 ## What makes it interesting
 
-<!-- portfolio-entry:polymarket-bot/commit/ba43f61 -->
-### One edge, sized by reality not by code
-
-Most automated trading systems limit themselves in code — a hard ceiling written into the logic. This bot takes a different approach: it finds one well-measured edge and lets real-world constraints do the limiting. Capital availability and the capacity of the venues it trades on act as the natural governor, so the system never overreaches its own evidence.
-
-The consequence is a bot that stays honest about what it actually knows. It does not scale a signal beyond what the market will bear, and it cannot be tricked by its own ambition into a position the underlying edge does not support.
-
-- Position sizing governed by capital and venue capacity, not arbitrary code limits
-- Single measured edge: depth over breadth, signal over noise
-
-<sub>Python</sub>
-<!-- /portfolio-entry:polymarket-bot/commit/ba43f61 -->
-
-- Adversarial pricing model: the bot prices quotes under the explicit assumption it will be deceived by informed traders.
-- Memory architecture that records only what the bot knew at decision time, preventing look-ahead contamination during backtesting.
-- Spread calibration loop that identified and corrected a systematic skew that was distorting every fill.
-- Per-position audit trail allowing precise post-mortems when a strategy loses, down to the individual decision.
-- Behavioural detectors embedded at every digest layer rather than applied as a post-processing step.
+- Self-audit on past predictions: the bot detects when it was wrong and records the specific failure mode rather than silently moving on.
+- Bad-exit refusal layer that overrides the default close signal when the reward structure of the exit itself becomes the risk.
+- Drift detection on a constraint that had no monitoring, catching a slow parameter shift that would otherwise go unnoticed.
+- Data-lie detection distinguishes corrupted or stale market observations from genuine price moves before they reach the signal layer.
+- Reward measurement closes a gap by counting distinct observations rather than raw row counts, preventing inflated performance metrics.
 
 ## Stack
 
