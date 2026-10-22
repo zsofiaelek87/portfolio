@@ -5,42 +5,28 @@
 
 <!-- portfolio:overview -->
 
-> A solo-built research and compliance toolkit for equity market analysis
+> A self-managing trading system that enforces its own rules and earns its own trust
 
 ## What it is
 
-Manually tracking trade rules, editorial disclosures, and suspicious market activity across equities is error-prone and time-consuming. This toolkit automates the scanning, flagging, and auditability work that analysts would otherwise do by hand. It is built for a single researcher who needs rigorous, self-documenting processes rather than a black-box dashboard.
+Most trading tools tell you what happened; this one decides what to do next and must justify why. Built for a solo trader who wants the system to hold itself accountable, it combines a screener, a rule engine, and a research layer that surfaces opportunities and documents the reasoning behind every action.
 
 ## How it works
 
-<!-- portfolio-entry:marcusedge/commit/80fb4c8 -->
-### A trading bot that earns its own promotion
-
-Earning the right to trade is harder than it sounds. Every new bundle strategy — a group of related positions that together express a single market view — starts in simulation, where it paper-trades against live markets, logs the questions it asks, and builds a track record. Promotion to active use requires a human to review that record and explicitly approve it. No automatic graduation, no quiet escalation.
-
-The question register is the accountability layer: every line of inquiry the system pursues is captured, so a reviewer can see not just what the bot decided but what it was curious about along the way.
-
-- New strategies run in simulation and promote only on explicit human approval
-- A question register logs every line of inquiry for review
-- Simulated arms mirror live market structure, keeping the test honest
-
-<sub>Python · Prediction Markets · Simulation · Automated Trading</sub>
-<!-- /portfolio-entry:marcusedge/commit/80fb4c8 -->
-
-1. Planning documents are ingested and converted into tracked system logic the codebase can enforce.
-2. Trade rules are encoded directly in code so compliance is testable, not just documented.
-3. A daily screener runs unattended, applying configured criteria across the full universe of instruments.
-4. An automated scanner reconstructs trading sequences to identify deliberate market exits.
-5. Forensics logic flags patterns consistent with pump-and-dump schemes using a documented methodology.
-6. Results surface in a research dashboard alongside a book journal and bot status views, with fine-grained move controls.
+1. A daily screener runs unattended, scanning the market and filtering candidates without manual input.
+2. Each candidate is evaluated against trade rules that live directly in the code, not in a config file or spreadsheet.
+3. A forensics layer checks for pump-and-dump patterns by reconstructing the sequence of price and volume moves.
+4. An automated scanner identifies deliberate market exits, flagging positions that may be being unwound.
+5. Editorial opinions attached to any candidate must expose their underlying logic before they influence a decision.
+6. A bot earns promotion to higher autonomy only by meeting performance criteria the system itself tracks.
 
 ## What makes it interesting
 
-- Trade rules are expressed as executable code, making compliance auditable through version control rather than prose documents.
-- Editorial opinions are coupled to a disclosure mechanism that requires them to show their reasoning, preventing unsupported assertions from reaching output.
-- The pump-and-dump forensics module follows an explicit, documented methodology so findings can be reproduced and challenged.
-- The market-exit scanner reconstructs the sequence of events in a position unwind rather than flagging a single data point in isolation.
-- The daily screener is fully unattended, removing the researcher from the loop for routine scanning while preserving manual review for flagged cases.
+- Trade rules are encoded in source rather than stored in data, making every active constraint auditable through version control.
+- A promotion mechanism gates bot autonomy behind measured performance, preventing untested logic from acting at full weight.
+- The forensics module reconstructs deliberate market exits as a methodology, not a heuristic flag, distinguishing systematic unwinds from noise.
+- Opinions rendered by the research dashboard are required to show their reasoning, structuring editorial judgment as a traceable artifact.
+- Planning documents are parsed into tracked system logic, closing the gap between intent written in prose and behavior running in code.
 
 <!-- /portfolio:overview -->
 
