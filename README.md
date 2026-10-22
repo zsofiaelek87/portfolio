@@ -40,7 +40,7 @@ Automated prediction-market trading bot with self-correcting risk and reward log
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-A self-running research and surveillance system for solo market analysis
+A self-managing trading system that enforces its own rules and earns its own trust
 
 <sub>10 write-ups</sub>
 
