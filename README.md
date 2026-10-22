@@ -52,7 +52,7 @@ Paper-trading bot for tokenized-equity perpetuals on Hyperliquid HIP-3
 
 ### [Game Builder](projects/game-builder.md)
 
-Mobile game remixer for kids: describe a game idea, play it in seconds
+Mobile PWA that turns a child's game idea into a playable game with AI assistance
 
 <sub>TypeScript — 2 write-ups</sub>
 
