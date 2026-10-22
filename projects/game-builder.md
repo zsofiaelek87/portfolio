@@ -7,40 +7,26 @@
 
 <!-- portfolio:overview -->
 
-> Mobile studio where kids describe a game and play it instantly — no code needed
+> Mobile PWA that turns a child's game idea into a playable game with AI assistance
 
 ## What it is
 
-Children struggle to turn game ideas into something playable without learning to code. Game Builder lets a child type a sentence describing a game, refines that idea through an AI Prompt Coach, and renders a working game on the spot. It runs in the browser on any phone, with no installation required.
+Children struggle to make games without knowing how to code. Game Builder lets a child describe a game in plain words, refines that description with an AI Prompt Coach, and renders a playable game instantly in the browser — no programming required.
 
 ## How it works
 
-1. Child types a free-form description of a game they want to play.
-2. An AI Prompt Coach (powered by Google Gemini or local fallback logic) rewrites and sharpens the idea into a structured game spec.
-3. The spec is handed to a Phaser 3 game engine that assembles and renders the game in the browser.
-4. The finished game runs immediately inside the same PWA — no page change, no download.
-5. Every push to main runs TypeScript checks, builds the app, and deploys to Firebase Hosting via GitHub Actions.
+1. A child types or speaks a description of a game they want to play.
+2. An AI Prompt Coach (powered by Google Gemini or local fallback logic) improves and clarifies the idea.
+3. The refined prompt is handed to a Phaser 3 game engine that constructs a playable game on the fly.
+4. The result renders immediately in the browser as a mobile-first PWA — no install needed.
+5. Every push to main runs TypeScript checks, a Vite build, and an automated deploy to Firebase Hosting via GitHub Actions.
 
 ## What makes it interesting
 
-<!-- portfolio-entry:game-builder/general/69b1567 -->
-### A child describes a game, AI builds it immediately
-
-A child types something like "a space shooter where the enemies get faster every wave" and, within seconds, a playable game appears — no code written, no tools installed, no adult required. Under the hood, a prompt coach (a conversational layer that asks clarifying questions before anything is generated) refines the idea, and a deterministic mapping — meaning the same description always produces the same game, reliably — selects and configures one of several ready-made game templates. The finished game gets its own shareable link anyone can open in a browser.
-
-Six distinct game types are supported so far, from side-scrolling runners to a Vampire Survivors-style survival mode, each with its own procedurally generated levels, enemy waves, or power-ups. If the AI service is unreachable, the system falls back to local logic rather than failing silently.
-
-- Same description always produces the same game — no randomness, no surprises
-- Prompt coach refines vague ideas before the engine commits to a design
-- Finished games get a public link, no account required to play
-
-<sub>TypeScript · React · Phaser · Gemini AI · Firestore · Vite</sub>
-<!-- /portfolio-entry:game-builder/general/69b1567 -->
-
-- Prompt Coach has a local fallback: the app is fully functional without a Gemini API key, so it degrades gracefully rather than breaking.
-- End-to-end pipeline converts a child's natural-language sentence into a live Phaser 3 game session — the write-up singles this out as the core engineering challenge.
-- PWA architecture means the game studio installs and runs on a phone like a native app with no App Store dependency.
-- CI/CD pipeline enforces TypeScript type-checking and linting before any build reaches Firebase Hosting, keeping a solo codebase stable.
+- AI prompt refinement runs fully offline via local fallback logic when no Gemini API key is present, keeping the app functional without a network dependency.
+- The pipeline goes from a single natural-language sentence to a running Phaser 3 game — bridging generative AI output directly to a real-time game engine.
+- Mobile-first PWA architecture means the game creation and play loop works on a phone browser with no app store install.
+- CI/CD pipeline enforces TypeScript strict checks and linting before any build reaches production, gating deploy quality automatically.
 
 ## Stack
 
