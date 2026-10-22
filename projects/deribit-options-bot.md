@@ -7,38 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> Automated options trading system on Deribit with self-auditing and volatility analysis
+> Automated options trading system for Deribit with model-routed decision making
 
 ## What it is
 
-Discretionary options traders spend hours each day gathering data, reviewing positions, and sanity-checking market conditions before acting. This bot automates that preparation layer for Deribit options, enforcing data quality gates and volatility analysis before any trade is considered. It is built for a solo trader who wants a rigorous, repeatable process without the manual overhead.
+Discretionary options trading involves too many simultaneous signals for a single decision path to handle reliably. This bot routes each decision to a model purpose-built for that type of problem, covering the full lifecycle from data validation to trade review. It is built for a solo trader who wants systematic discipline without giving up analytical depth.
 
 ## How it works
 
-<!-- portfolio-entry:deribit-options-bot/commit/1a89ab5 -->
-### Routing decisions to the models built to handle them
-
-Not every options strategy is structurally identical, and not every underlying model is equipped to reason about every kind. Rather than broadcasting a position idea to all available models and letting the results sort themselves out, the bot now routes each input only to the models whose design actually matches what is being asked. The practical effect: less wasted computation, fewer nonsense outputs from mismatched inputs, and a clearer audit trail of which model made which call.
-
-In an unattended trading system, garbage-in-garbage-out is not an abstract concern — it is a live position taken in the wrong direction. Matching the work to the right tool before anything executes is a quiet form of risk control.
-
-- Each strategy type reaches only the model built to evaluate it
-- Mismatched routing eliminated before a position is ever considered
-
-<sub>Python · Telegram</sub>
-<!-- /portfolio-entry:deribit-options-bot/commit/1a89ab5 -->
-
-1. Historical data spanning five years is fetched and validated before the system is permitted to enter any position.
-2. Each day the bot generates a structured self-review, summarising market conditions, open positions, and any anomalies.
-3. Before a study or backtest runs, the system checks whether the required data is present and complete, or returns an explicit refusal.
-4. Realised and implied volatility are measured directly from market data to determine whether a volatility premium actually exists at that moment.
+1. Incoming market data is validated against five years of historical context before any analysis begins.
+2. Volatility premium is measured empirically rather than assumed, anchoring each opportunity in real edge.
+3. The request is classified and routed to the specialist model lane built for that decision type.
+4. Each lane grades its own output, giving a per-analyst confidence score before a signal is acted on.
+5. The bot writes a structured daily review of its own decisions, creating an auditable performance record.
+6. Any data request that cannot be satisfied cleanly is refused outright rather than answered with partial information.
 
 ## What makes it interesting
 
-- Five-year data requirement acts as a hard prerequisite gate, preventing trades or studies from running on insufficient history.
-- The bot authors its own daily review, creating an auditable log of its reasoning and market observations without human prompting.
-- Data requests return a structured refusal rather than a silent failure or partial result when requirements are not met.
-- Volatility premium is computed from observed data rather than assumed, grounding position sizing and entry decisions in measured conditions.
+- Decision routing sends each problem to a dedicated model lane rather than a single generalist path, reducing category errors.
+- Per-lane grading produces an explicit confidence score for each analyst output, making uncertainty visible before execution.
+- Five years of historical data must clear validation before a trade is considered, enforcing a hard baseline for signal quality.
+- Volatility premium is measured from data rather than assumed, grounding edge estimates in observed behavior.
+- A self-written daily review gives the system a structured introspection loop without requiring external logging infrastructure.
 
 ## Stack
 
