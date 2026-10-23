@@ -7,25 +7,25 @@
 
 <!-- portfolio:overview -->
 
-> Automated carry-trade bot that reviews its own history to size and promote positions
+> Automated carry-trade bot that evaluates its own performance to size future positions
 
 ## What it is
 
-Carry trades on crypto perpetuals require constant monitoring of funding rates, position sizing, and performance review — work that compounds in complexity as the number of open legs grows. This bot handles that loop autonomously, tracking its own trade history and using that record to inform the next decision. It is built for a solo trader who wants systematic execution without a full quant team.
+Carry trades on crypto perpetuals require constant monitoring of funding rates and disciplined position sizing — work that is tedious to do by hand and easy to get wrong under pressure. This bot automates that loop for a solo trader who wants systematic execution without a full quant stack. It runs the strategy, keeps its own records, and uses that history to decide how aggressively to trade next.
 
 ## How it works
 
-1. Polls funding rate and market data from the exchange on a scheduled cycle.
-2. Evaluates current open positions against carry thresholds to decide whether to hold, adjust, or close.
-3. Reads its own historical trade log to assess recent performance before acting.
-4. Applies a promotion mechanism that scales up a trading arm when its track record justifies larger exposure.
-5. Submits orders and records outcomes back to the log to close the feedback loop.
+1. Polls funding-rate data to identify carry opportunities across perpetual futures.
+2. Opens or closes positions based on current rates and internally tracked performance.
+3. Logs each trade outcome to a persistent record it can read back later.
+4. Analyses its own track record to assess whether recent performance justifies larger exposure.
+5. Scales position size up or down — earning or losing its 'promotion' — based on that self-assessment.
 
 ## What makes it interesting
 
-- Self-referential decision layer: the bot reads its own trade record rather than relying solely on live market signals, making past performance a first-class input.
-- Promotion mechanic that ties position-size authority to earned track record, acting as a built-in risk governor.
-- Feedback loop architecture where every executed order writes back to the history the next decision cycle will read.
+- Self-evaluation loop: the bot reads its own trade history and uses it as an input to future sizing decisions, closing the feedback loop without human intervention.
+- Performance-gated promotion: position size is not fixed; the bot must earn larger allocations through demonstrated results, limiting drawdown during poor regimes.
+- Single-process design in Python keeps the operational surface small for a solo operator with no infrastructure team.
 
 ## Stack
 
