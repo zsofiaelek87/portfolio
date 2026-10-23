@@ -76,7 +76,7 @@ Automated options trading system for Deribit with model-routed decision making
 
 ### [Binance Carry Bot](projects/binance-carry-bot.md)
 
-Automated carry-trade bot that reviews its own history to size and promote positions
+Automated carry-trade bot that evaluates its own performance to size future positions
 
 <sub>Python — 2 write-ups</sub>
 
