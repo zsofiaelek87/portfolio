@@ -11,24 +11,24 @@
 
 ## What it is
 
-Tokenized-equity perpetuals are a new and illiquid market where edge is unproven and position sizing mistakes are costly. This bot explores two candidate strategies on Hyperliquid HIP-3 in paper-trading mode, measuring whether an edge exists before any real capital is committed. It is a solo research instrument, not a production trading system.
+Tokenized-equity perpetuals on Hyperliquid are a nascent market where edge is unproven and the cost of finding out is real. This bot runs paper trades to measure whether two candidate strategies have an edge before any live capital is committed. Bounded position sizing, portfolio gates, and automatic exploration stops protect the model bankroll during the measurement phase.
 
 ## How it works
 
-1. A backfill command seeds 48-hour price references from the Hyperliquid API.
-2. A run-once scan evaluates both strategies against current market conditions.
-3. An analyst component generates trade candidates and is graded before its output is acted on.
-4. Positions are sized using evidence gathered from prior scans rather than fixed assumptions.
-5. Resting limit orders are placed instead of market orders to avoid chasing the price.
-6. A daily digest surfaces only the signals that crossed a promotion threshold, with silence where confidence is absent.
+1. A backfill command seeds 48 hours of price references from Hyperliquid HIP-3.
+2. A run-once scan evaluates open signals against the two live strategies and places resting limit orders rather than chasing the market price.
+3. Before acting on any signal, the bot grades the underlying analyst call to decide whether the question is worth asking.
+4. Position size is determined by a pre-signal sizing model that accounts for uncertainty before the edge is confirmed.
+5. Exploration is halted automatically when stopping criteria are met or when a news event is imminent.
+6. A daily digest surfaces only the signals promoted to critical status, and stays silent rather than reporting with false confidence.
 
 ## What makes it interesting
 
-- Analyst grading gate: the signal source is scored on past accuracy before its questions are trusted, preventing a degraded model from influencing sizing.
-- Bounded minimum-size exploration: edge is measured with the smallest permitted position, capping research cost while accumulating real fill data.
-- Explicit stop-exploring logic: a separate gate halts new entries when cumulative evidence does not support continued exploration.
-- Pre-event step-back: the bot recognises scheduled news windows and withholds orders rather than trading into known information risk.
-- Honest silence in the digest: signals that do not meet the promotion threshold are suppressed entirely rather than reported with low-confidence labels.
+- Analyst grading before signal trust: the bot scores the source of each signal and withholds action when the analyst does not meet a quality bar, reducing noise from low-quality inputs.
+- Pre-signal sizing: position size is calculated under uncertainty before the signal is confirmed, so exploration itself is bounded and comparable across hypotheses.
+- Automatic exploration stop: a built-in circuit breaker halts further position-taking when statistical or portfolio conditions are met, preventing runaway paper losses.
+- Honest silence over false confidence: the digest omits signals that fall below a confidence threshold rather than reporting them with hedged language.
+- News-aware pause: the bot detects incoming scheduled events and steps back from new entries, avoiding fills into known high-uncertainty windows.
 
 ## Stack
 
