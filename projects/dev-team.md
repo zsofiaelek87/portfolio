@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> Routes rough ideas through a PM gatekeeper to reviewed GitHub PRs with configurable auto-merge
+> Routes raw ideas through a PM gatekeeper to reviewed GitHub PRs with configurable auto-merge
 
 ## What it is
 
-Turning a vague idea into a mergeable pull request normally requires context-switching across planning, spec writing, and code review. This orchestrator handles that pipeline semi-autonomously: a PM Gatekeeper refines the idea into a testable specification before any code runs, and a sandboxed VM worker produces a branch and PR for operator review. It is built for a solo operator who wants to stay in control of merges without doing the scaffolding work by hand.
+Turning a vague idea into a merged pull request normally requires a developer to hold the full context of requirements, planning, and execution in their head at once. This orchestrator breaks that into a gated pipeline: a PM Gatekeeper refines rough input into a testable specification before any code runs, and a sandboxed worker handles the rest. It is built for a solo operator who wants meaningful human oversight without approving every micro-decision.
 
 ## How it works
 
 1. An operator submits a rough idea or nontechnical report through the Next.js dashboard.
-2. The PM Gatekeeper separates evidence from unknowns, asks only answerable clarification questions, and produces a structured specification.
-3. The specification passes a requirements gate and a plan gate before any execution begins.
-4. A Node.js worker service running on an Ubuntu VM picks up the approved task from Firestore.
-5. The worker executes inside a hardened sandbox that holds no orchestrator secrets, then pushes a branch and opens a pull request.
-6. The operator reviews the PR; with AUTO_MERGE_PRS enabled, low-risk PRs can be merged automatically.
+2. The PM Gatekeeper's Spec Assist pass separates evidence from unknowns and produces a structured, testable specification.
+3. A strong Codex session plans the work; the plan must clear a gate before execution begins.
+4. Bounded Codex sessions execute the plan through a model ladder, with paid API as an explicit capacity-only fallback.
+5. The worker runs inside a hardened executor sandbox on an Ubuntu VM, isolated from orchestrator secrets.
+6. Completed work is pushed to a branch and opened as a GitHub PR, with merge requiring operator approval unless AUTO_MERGE_PRS is enabled.
 
 ## What makes it interesting
 
-- Hardened executor sandbox (D1): orchestrator secrets are never passed inside the execution environment, limiting blast radius if generated code misbehaves.
-- Hard per-task ceilings on wall-clock time, turns, and tokens (D3) enforce resource bounds independently of cost estimates, which are display-only.
-- Hybrid subscription-first model routing: a fresh session handles planning while bounded sessions step down a model ladder for execution, with paid API as an explicit capacity-only fallback.
-- Spec Assist separates evidence from unknowns at intake so every executor context starts from a testable structured specification rather than a raw prompt.
-- Semi-autonomous by design (D4): PR merge is always an operator decision, making automation opt-in rather than the default failure mode.
+- Hardened executor sandbox (D1) keeps orchestrator secrets out of the execution environment by design.
+- Hard per-task ceilings on wall-clock time, turns, and tokens prevent runaway jobs; cost figures are display-only estimates, never control values.
+- Hybrid subscription-first model routing uses a model ladder so paid API calls are an explicit last resort, not the default path.
+- The PM Gatekeeper asks only answerable clarification questions, ensuring every Codex context starts from a testable specification rather than ambiguous prose.
+- Semi-autonomous by policy (D4): PR merge is always operator-gated, with auto-merge opt-in rather than opt-out.
 
 ## Stack
 
-TypeScript · Next.js · Node.js · Firebase · Firestore · Firebase Authentication · GitHub Apps · Anthropic · pnpm · systemd
+TypeScript · Next.js · Node.js · Firebase · Firestore · Firebase Authentication · GitHub Apps · Anthropic · pnpm · Ubuntu
 
 <!-- /portfolio:overview -->
 
