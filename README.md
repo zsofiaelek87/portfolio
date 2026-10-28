@@ -18,7 +18,7 @@ A monorepo of two Hungarian study apps for kids, deployed separately from one re
 
 A self-running short video engine that learns from audience retention
 
-<sub>TypeScript — 7 write-ups</sub>
+<sub>TypeScript — 8 write-ups</sub>
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
