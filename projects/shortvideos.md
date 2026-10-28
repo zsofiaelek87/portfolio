@@ -38,6 +38,19 @@ TypeScript
 
 ## Recently shipped
 
+<!-- portfolio-entry:shortvideos/commit/00e93b8 -->
+### Queue logic that remembers what it already said
+
+An automated channel that posts frequently enough to build an audience will eventually repeat itself — the same angle, the same framing, the same fact — unless the scheduling layer actively refuses to. This commit teaches the pipeline to recognise when a fact-based Short (a brief vertical video built around a single claim) has already run, block it from queuing again, and cleanly retire any companion content — related clips intended to post alongside it — that no longer has a reason to exist.
+
+The result is that the channel can run indefinitely without a producer auditing the backlog for duplicates by hand.
+
+- Duplicate detection built into the queue, not bolted on after the fact
+- Companion content retired automatically when its anchor is blocked
+
+<sub>TypeScript</sub>
+<!-- /portfolio-entry:shortvideos/commit/00e93b8 -->
+
 <!-- portfolio-entry:shortvideos/commit/9bc2583 -->
 ### Videos that learn from what audiences keep
 
