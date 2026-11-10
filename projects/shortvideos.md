@@ -15,6 +15,19 @@ Producing short video content consistently is bottlenecked by manual decisions a
 
 ## How it works
 
+<!-- portfolio-entry:shortvideos/commit/2c7cbbb -->
+### State that survives being switched off
+
+Every automated publishing run stores a record of what has already been decided — which videos are queued, which are done, which are waiting. When that record is archived and comes back empty (a known edge case with how Telegram, the messaging service used for delivery confirmations, compresses old data), a naive system would interpret the silence as a blank slate and start making decisions it has already made. This fix detects that specific zero-filled condition and restores the correct state without resetting any of the scheduling logic built on top of it.
+
+The practical consequence: a system that has been running quietly for weeks does not accidentally treat itself as new.
+
+- Distinguishes a genuinely empty record from a compressed archived one
+- Preserves scheduling decisions across storage edge cases
+
+<sub>TypeScript · Telegram</sub>
+<!-- /portfolio-entry:shortvideos/commit/2c7cbbb -->
+
 1. Content enters the pipeline only after passing an approval gate that prevents unapproved material from reaching production.
 2. Approved content is narrated using a voice layer that signals its own confidence rather than asserting false certainty.
 3. The video production engine assembles and renders clips without manual intervention.
