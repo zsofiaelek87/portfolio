@@ -7,32 +7,32 @@
 
 <!-- portfolio:overview -->
 
-> Local sales intelligence and outreach CRM for an IT recruitment agency
+> A local CRM that scores, prioritizes, and drafts outreach for IT recruitment leads
 
 ## What it is
 
-Recruiters waste time switching between spreadsheets, email clients, and LinkedIn with no single view of who to contact or why. Recruit Lead Engine is a free, self-hosted pipeline that scores company leads, identifies the right contacts, generates outreach drafts, and tracks every message sent. It is built for a solo sales manager running outbound into new markets without a paid CRM or data subscription.
+Finding the right hiring contacts at the right companies is slow, manual work for a solo recruiter expanding into a new market. Recruit Lead Engine centralizes that work: it scores company leads by hiring signals, identifies contacts, and generates outreach drafts ready to send through Outlook. It is built for a single operator who wants sales intelligence without paid APIs or vendor lock-in.
 
 ## How it works
 
-1. Companies are added via a JSON import file and ingested by a local scan script that deduplicates and applies lead scoring automatically.
-2. The scoring engine rates each company 0–100 across signals such as open role count, role age, tech stack difficulty, and company size, then assigns an A/B/C/Ignore tier.
-3. A contact-finder script identifies people to reach at each company and writes them to a local contacts file.
-4. A daily action queue is generated from scored leads and contact status, surfacing exactly who to email that day.
-5. Outreach drafts are produced locally and queued through a hosted Firebase UI; emails are sent in small batches via a PowerShell script through Outlook Web.
-6. All outreach status, replies, and follow-up state are tracked in local JSON files and reflected in the hosted dashboard.
+1. Companies are added via a local JSON file and scanned to produce scored lead records.
+2. A scoring engine rates each company 0–100 across signals like open role count, role age, tech stack difficulty, and company size.
+3. A contact-finder script identifies individuals to reach at priority companies.
+4. Outreach drafts are generated per contact and queued for review in a hosted Firebase UI.
+5. Reviewed messages are sent in small batches through a local PowerShell script via Outlook Web.
+6. A daily action queue surfaces the next tasks based on lead tier and outreach status.
 
 ## What makes it interesting
 
-- Deduplication and send-uniqueness guardrails are enforced at the engine level so the same email is never sent twice to the same recipient.
-- Contact discovery runs with built-in queue guardrails that limit how many contacts are surfaced per company per run, preventing accidental bulk targeting.
-- A quiet-rule layer decides when outreach should pause—follow-up sequences know when to stop rather than relying on a manual cutoff.
-- Outreach drafts include pre-flight validation that refuses to release a message if required conditions are not met, surfacing actionable failure messages instead.
-- The entire dashboard is a static Next.js export deployed to Firebase Hosting with no server, keeping all data local and eliminating API costs.
+- Built-in queue guardrails on contact discovery prevent the same recipient from being contacted redundantly.
+- A deduplication rule in the send pipeline means the engine never dispatches the same email twice.
+- Outreach drafts include validation that blocks malformed or incomplete messages from being queued.
+- Follow-up logic knows when to stop, enforcing a quiet rule that protects every recipient from over-contact.
+- The full stack is static-exportable to Firebase Hosting with all data bundled as JSON, requiring no server at runtime.
 
 ## Stack
 
-TypeScript · Next.js · Firebase Hosting · Firestore · PowerShell · Python · Outlook Web
+TypeScript · Next.js · Firebase Hosting · Firestore · PowerShell · Python
 
 <!-- /portfolio:overview -->
 
