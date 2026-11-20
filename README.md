@@ -10,7 +10,7 @@ A Python bot that measures on-chain liquidity and fee data to inform trading dec
 
 ### [Study App](projects/studyapp.md)
 
-A monorepo of two Hungarian study apps for kids, deployed separately from one repo
+A monorepo delivering two Hungarian study apps for primary-school children
 
 <sub>TypeScript — 6 write-ups</sub>
 
