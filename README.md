@@ -22,7 +22,7 @@ An automated short-video production and posting engine for solo creators
 
 ### [Recruit Lead Engine](projects/recruit-lead-engine.md)
 
-Local sales intelligence and outreach CRM for an IT recruitment agency
+A local CRM that scores, prioritizes, and drafts outreach for IT recruitment leads
 
 <sub>TypeScript — 18 write-ups</sub>
 
