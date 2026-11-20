@@ -7,41 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> A self-running short video engine that learns from audience retention
+> An automated short-video production and posting engine for solo creators
 
 ## What it is
 
-Producing short video content consistently is bottlenecked by manual decisions at every step — what to make, when to post, and whether it is working. This system automates the full production pipeline, from content approval through scheduling, and tightens the loop by feeding audience retention signals back into what gets made next. It is built for a solo operator who wants output without a team.
+Keeping a short-video channel running consistently is a scheduling, scripting, and distribution problem that compounds quickly for one person. This system automates the full pipeline from content selection through narration and posting, with logic that tracks what has already been said and chooses what to publish next. It is built for a single operator who wants the channel to run without daily intervention.
 
 ## How it works
 
-<!-- portfolio-entry:shortvideos/commit/2c7cbbb -->
-### State that survives being switched off
-
-Every automated publishing run stores a record of what has already been decided — which videos are queued, which are done, which are waiting. When that record is archived and comes back empty (a known edge case with how Telegram, the messaging service used for delivery confirmations, compresses old data), a naive system would interpret the silence as a blank slate and start making decisions it has already made. This fix detects that specific zero-filled condition and restores the correct state without resetting any of the scheduling logic built on top of it.
-
-The practical consequence: a system that has been running quietly for weeks does not accidentally treat itself as new.
-
-- Distinguishes a genuinely empty record from a compressed archived one
-- Preserves scheduling decisions across storage edge cases
-
-<sub>TypeScript · Telegram</sub>
-<!-- /portfolio-entry:shortvideos/commit/2c7cbbb -->
-
-1. Content enters the pipeline only after passing an approval gate that prevents unapproved material from reaching production.
-2. Approved content is narrated using a voice layer that signals its own confidence rather than asserting false certainty.
-3. The video production engine assembles and renders clips without manual intervention.
-4. A reach-first planner decides posting order and timing to maximise distribution.
-5. Retention data from published videos feeds back into the system to weight future content selection.
-6. A fair-shuffle algorithm with verifiable output determines content sequencing without silent bias.
+1. A planner selects the next topic using a reach-first posting strategy built into its scheduling logic.
+2. A queue layer checks what has already been covered so the same ground is never repeated across episodes.
+3. A narration engine scripts the piece and flags claims it cannot verify with explicit uncertainty markers.
+4. A production engine assembles the final video autonomously without manual rendering steps.
+5. Audience retention signals feed back into future content selection to weight what viewers finish watching.
+6. The finished video is posted according to the planner's schedule, with all state persisted so the system survives being switched off and restarted.
 
 ## What makes it interesting
 
-- Production gate enforces an approved-content contract, so the render pipeline cannot run on unreviewed material by accident.
-- Podcast narration layer expresses uncertainty explicitly rather than presenting all output with equal confidence.
-- Shuffle algorithm is designed to prove its own fairness, making sequencing decisions auditable rather than opaque.
-- Planner encodes a reach-first strategy as a first-class scheduling concern, not a manual afterthought.
-- Voice comprehension is validated against real broadcast audio, grounding accuracy claims in practical conditions.
+- Persistent state across restarts: the system writes enough state to disk that a hard stop does not lose queue position, posting history, or in-progress production work.
+- Idempotent queue memory: the queue tracks its own output history and will not re-surface content it has already dispatched, preventing accidental repeats.
+- Calibrated narration uncertainty: the scripting layer distinguishes what it knows from what it is inferring and surfaces that distinction in the delivered audio rather than papering over it.
+- Verifiable shuffle fairness: the content shuffle algorithm produces a proof of its own ordering so the distribution can be audited rather than trusted blindly.
+- Retention-weighted selection: audience completion data loops back into the planner, so topics are ranked by demonstrated keep-watching behaviour rather than assumed appeal.
 
 ## Stack
 
