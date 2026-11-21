@@ -7,28 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> Automated prediction-market trading bot with self-correcting risk and reward logic
+> An automated prediction-market trading bot built for Polymarket in Python
 
 ## What it is
 
-Prediction markets reward fast, accurate pricing of real-world events, but they also punish sloppy position management and corrupted data. This bot automates trading on Polymarket for a solo operator who wants disciplined entries, exits, and sizing without manual oversight. It is built to catch its own mistakes rather than repeat them.
+Prediction markets reward accurate probability estimates, but quoting them systematically is hard: spreads drift, signals leak future information, and losses are difficult to attribute. This bot automates the full cycle of pricing, position management, and post-trade analysis on Polymarket so a solo operator can run a disciplined book without managing every order by hand.
 
 ## How it works
 
-1. Market data is ingested and validated before any signal is trusted, filtering observations that are statistically lying.
-2. A pre-trade view widens context across related positions so no bet is placed in isolation.
-3. Signals are sized by real observed edge, not by what the code assumes the edge to be.
-4. The bot evaluates arbitrage opportunities by time exposure as well as raw profit margin.
-5. Exits are gated by a refusal mechanism that blocks withdrawals when closing would destroy more value than holding.
-6. After each trade, the system attributes the loss or gain to the actual driver and logs where its prior reasoning was wrong.
+1. Market data is ingested and filtered to identify actionable opportunities, including low-liquidity lanes flagged for revival.
+2. A pricing engine quotes both sides of a market, with explicit logic for the side that attracts little natural interest.
+3. Volatility signals feed into position sizing decisions alongside standard probability estimates.
+4. Every order is tagged with a paper trail at the position level so fills, slippage, and spread impact can be reconstructed later.
+5. A digest layer runs detectors at each stage to catch manipulation attempts the bot is designed to assume will occur.
+6. Post-trade attribution breaks down losses by strategy component and flags retrospective data leakage before any signal is promoted.
 
 ## What makes it interesting
 
-- Self-audit on past predictions: the bot detects when it was wrong and records the specific failure mode rather than silently moving on.
-- Bad-exit refusal layer that overrides the default close signal when the reward structure of the exit itself becomes the risk.
-- Drift detection on a constraint that had no monitoring, catching a slow parameter shift that would otherwise go unnoticed.
-- Data-lie detection distinguishes corrupted or stale market observations from genuine price moves before they reach the signal layer.
-- Reward measurement closes a gap by counting distinct observations rather than raw row counts, preventing inflated performance metrics.
+- Lookahead-leakage guard: a dedicated check ensures no feature used in live pricing could have known the outcome it was trained to predict.
+- Deception-aware pricing model: the quoting engine is designed from the start under the assumption that counterparties will attempt to manipulate its prices.
+- Granular loss attribution: when the strategy underperforms, the system identifies the exact component responsible rather than treating the drawdown as a single event.
+- Behaviour-level position tracking: the audit layer records what the bot knew and decided at each moment, not a full replay of every tick.
+- Detector hooks embedded throughout the digest pipeline, providing continuous integrity checks rather than a single validation pass.
 
 ## Stack
 
