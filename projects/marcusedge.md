@@ -5,28 +5,28 @@
 
 <!-- portfolio:overview -->
 
-> A self-managing trading system that enforces its own rules and earns its own trust
+> A self-running market research and trade-rule system for independent analysts
 
 ## What it is
 
-Most trading tools tell you what happened; this one decides what to do next and must justify why. Built for a solo trader who wants the system to hold itself accountable, it combines a screener, a rule engine, and a research layer that surfaces opportunities and documents the reasoning behind every action.
+Independent market research is time-consuming to keep rigorous: opinions drift from their stated logic, scans require manual effort every day, and suspicious price action is easy to miss. This system encodes trade rules directly in code, runs daily screeners unattended, and forces editorial opinions to show their reasoning. It is built for a solo analyst who wants the discipline of an institutional workflow without a team.
 
 ## How it works
 
-1. A daily screener runs unattended, scanning the market and filtering candidates without manual input.
-2. Each candidate is evaluated against trade rules that live directly in the code, not in a config file or spreadsheet.
-3. A forensics layer checks for pump-and-dump patterns by reconstructing the sequence of price and volume moves.
-4. An automated scanner identifies deliberate market exits, flagging positions that may be being unwound.
-5. Editorial opinions attached to any candidate must expose their underlying logic before they influence a decision.
-6. A bot earns promotion to higher autonomy only by meeting performance criteria the system itself tracks.
+1. Planning documents are ingested and converted into tracked system logic with explicit state.
+2. Trade rules are expressed as code rather than prose, so they are testable and auditable.
+3. A daily screener runs unattended and surfaces candidates that meet defined criteria.
+4. An automated scanner reconstructs price and volume sequences to flag deliberate market exits.
+5. Editorial opinions are recorded alongside the evidence required to support them.
+6. Results surface through a research dashboard with book journal and bot dashboards combined in one view.
 
 ## What makes it interesting
 
-- Trade rules are encoded in source rather than stored in data, making every active constraint auditable through version control.
-- A promotion mechanism gates bot autonomy behind measured performance, preventing untested logic from acting at full weight.
-- The forensics module reconstructs deliberate market exits as a methodology, not a heuristic flag, distinguishing systematic unwinds from noise.
-- Opinions rendered by the research dashboard are required to show their reasoning, structuring editorial judgment as a traceable artifact.
-- Planning documents are parsed into tracked system logic, closing the gap between intent written in prose and behavior running in code.
+- Trade rules live in version-controlled code rather than notes, making every entry and exit condition auditable.
+- Editorial opinions are structurally required to show their work — the system refuses to store a view without its supporting evidence.
+- A forensics methodology for pump-and-dump detection is encoded as a reproducible scanner, not a manual checklist.
+- The automated scanner reconstructs a deliberate market exit from raw data, turning a qualitative judgment into a repeatable signal.
+- The daily screener runs fully unattended, removing the manual step that most solo setups quietly skip.
 
 <!-- /portfolio:overview -->
 
