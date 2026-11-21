@@ -34,7 +34,7 @@ WordPress SEO plugin with AI-powered schema generation, content enhancement, and
 
 ### [Polymarket Bot](projects/polymarket-bot.md)
 
-Automated prediction-market trading bot with self-correcting risk and reward logic
+An automated prediction-market trading bot built for Polymarket in Python
 
 <sub>Python — 36 write-ups</sub>
 
