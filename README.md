@@ -40,7 +40,7 @@ An automated prediction-market trading bot built for Polymarket in Python
 
 ### [Marcus Edge](projects/marcusedge.md)
 
-A self-managing trading system that enforces its own rules and earns its own trust
+A self-running market research and trade-rule system for independent analysts
 
 <sub>10 write-ups</sub>
 
