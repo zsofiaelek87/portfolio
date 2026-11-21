@@ -7,28 +7,28 @@
 
 <!-- portfolio:overview -->
 
-> Automated options trading system for Deribit with model-routed decision making
+> Automated options analysis and daily review for Deribit traders
 
 ## What it is
 
-Discretionary options trading involves too many simultaneous signals for a single decision path to handle reliably. This bot routes each decision to a model purpose-built for that type of problem, covering the full lifecycle from data validation to trade review. It is built for a solo trader who wants systematic discipline without giving up analytical depth.
+Discretionary options trading on Deribit requires consistent pre-trade research that is easy to skip or rush. This bot enforces that discipline by grading setups, pulling five years of historical context, and writing its own daily review before any position is considered. It is built for a solo trader who wants a repeatable process without a team.
 
 ## How it works
 
-1. Incoming market data is validated against five years of historical context before any analysis begins.
-2. Volatility premium is measured empirically rather than assumed, anchoring each opportunity in real edge.
-3. The request is classified and routed to the specialist model lane built for that decision type.
-4. Each lane grades its own output, giving a per-analyst confidence score before a signal is acted on.
-5. The bot writes a structured daily review of its own decisions, creating an auditable performance record.
-6. Any data request that cannot be satisfied cleanly is refused outright rather than answered with partial information.
+1. The bot fetches current options data from Deribit and organizes it by instrument lane.
+2. Each lane is graded independently against defined criteria before it is considered tradeable.
+3. Five years of historical data are loaded to give each setup long-run context.
+4. Volatility premium is measured from the data rather than assumed from convention.
+5. If a study lacks the data it needs, the bot refuses clearly rather than proceeding on incomplete input.
+6. At the end of each day the bot composes a structured review of what it saw and decided.
 
 ## What makes it interesting
 
-- Decision routing sends each problem to a dedicated model lane rather than a single generalist path, reducing category errors.
-- Per-lane grading produces an explicit confidence score for each analyst output, making uncertainty visible before execution.
-- Five years of historical data must clear validation before a trade is considered, enforcing a hard baseline for signal quality.
-- Volatility premium is measured from data rather than assumed, grounding edge estimates in observed behavior.
-- A self-written daily review gives the system a structured introspection loop without requiring external logging infrastructure.
+- Per-lane grading isolates each instrument so a weak setup in one contract cannot contaminate the analysis of another.
+- Hard data-sufficiency checks cause the bot to issue a clear refusal rather than silently degrade to incomplete analysis.
+- Volatility premium is derived by measurement against the historical record, removing the assumption that premium is always present.
+- Five years of historical depth are loaded before any trade is considered, enforcing a long-run view as a system constraint.
+- The self-written daily review creates an auditable log of the bot's own reasoning, not just its outputs.
 
 ## Stack
 
