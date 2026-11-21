@@ -7,26 +7,26 @@
 
 <!-- portfolio:overview -->
 
-> Mobile PWA that turns a child's game idea into a playable game with AI assistance
+> Mobile PWA that turns a child's description into a playable game, no coding required
 
 ## What it is
 
-Children struggle to make games without knowing how to code. Game Builder lets a child describe a game in plain words, refines that description with an AI Prompt Coach, and renders a playable game instantly in the browser — no programming required.
+Children often want to make games but hit a wall the moment any code appears. Game Builder lets a child type a plain-English description of a game, refines that idea through an AI Prompt Coach, and renders a playable result on-screen in seconds. It is aimed at kids using phones or browsers, with no installation and no programming knowledge needed.
 
 ## How it works
 
-1. A child types or speaks a description of a game they want to play.
-2. An AI Prompt Coach (powered by Google Gemini or local fallback logic) improves and clarifies the idea.
-3. The refined prompt is handed to a Phaser 3 game engine that constructs a playable game on the fly.
-4. The result renders immediately in the browser as a mobile-first PWA — no install needed.
-5. Every push to main runs TypeScript checks, a Vite build, and an automated deploy to Firebase Hosting via GitHub Actions.
+1. A child types a sentence describing the game they want to make.
+2. The AI Prompt Coach rewrites or improves the description to make it more specific and game-ready.
+3. The refined prompt is interpreted by local logic, with an optional call to Google Gemini for richer output.
+4. Phaser 3 receives the structured game definition and renders an interactive game in the browser.
+5. The finished build is served as a PWA from Firebase Hosting, so it works on any phone or desktop without an app store.
 
 ## What makes it interesting
 
-- AI prompt refinement runs fully offline via local fallback logic when no Gemini API key is present, keeping the app functional without a network dependency.
-- The pipeline goes from a single natural-language sentence to a running Phaser 3 game — bridging generative AI output directly to a real-time game engine.
-- Mobile-first PWA architecture means the game creation and play loop works on a phone browser with no app store install.
-- CI/CD pipeline enforces TypeScript strict checks and linting before any build reaches production, gating deploy quality automatically.
+- Graceful API fallback: the app runs entirely on local AI logic when no Gemini key is present, so the experience never breaks for users without a key.
+- Prompt coaching layer sits between raw child input and the game engine, turning vague sentences into structured, renderable game definitions.
+- CI/CD pipeline on every push to main: TypeScript checks, linting, build, and Firebase deploy all run automatically via GitHub Actions.
+- PWA architecture means the game creation tool itself requires no installation and works on the same mobile devices children already have.
 
 ## Stack
 
