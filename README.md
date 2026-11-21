@@ -70,7 +70,7 @@ Routes raw ideas through a PM gatekeeper to reviewed GitHub PRs with configurabl
 
 ### [Deribit Options Bot](projects/deribit-options-bot.md)
 
-Automated options trading system for Deribit with model-routed decision making
+Automated options analysis and daily review for Deribit traders
 
 <sub>Python — 6 write-ups</sub>
 
