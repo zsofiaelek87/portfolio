@@ -7,25 +7,25 @@
 
 <!-- portfolio:overview -->
 
-> Automated carry-trade bot that evaluates its own performance to size future positions
+> Automated carry-trade execution that promotes or demotes itself based on its own track record
 
 ## What it is
 
-Carry trades on crypto perpetuals require constant monitoring of funding rates and disciplined position sizing — work that is tedious to do by hand and easy to get wrong under pressure. This bot automates that loop for a solo trader who wants systematic execution without a full quant stack. It runs the strategy, keeps its own records, and uses that history to decide how aggressively to trade next.
+Carry trades on perpetual futures require constant monitoring of funding rates and disciplined position sizing — work that is tedious to do by hand and easy to do inconsistently. This bot handles that loop autonomously, executing trades and then reading its own historical performance to decide how much capital to deploy next. It is built for a solo trader who wants a systematic approach without delegating to a third-party service.
 
 ## How it works
 
-1. Polls funding-rate data to identify carry opportunities across perpetual futures.
-2. Opens or closes positions based on current rates and internally tracked performance.
-3. Logs each trade outcome to a persistent record it can read back later.
-4. Analyses its own track record to assess whether recent performance justifies larger exposure.
-5. Scales position size up or down — earning or losing its 'promotion' — based on that self-assessment.
+1. The bot polls funding rate data to identify carry opportunities worth entering.
+2. It opens and manages positions according to a defined execution strategy.
+3. After each cycle it logs the outcome to its own track record.
+4. It reads that track record and applies a self-assessment rule to adjust its operating parameters.
+5. Based on that assessment, the trading arm is either promoted to larger size or demoted to smaller size for the next cycle.
 
 ## What makes it interesting
 
-- Self-evaluation loop: the bot reads its own trade history and uses it as an input to future sizing decisions, closing the feedback loop without human intervention.
-- Performance-gated promotion: position size is not fixed; the bot must earn larger allocations through demonstrated results, limiting drawdown during poor regimes.
-- Single-process design in Python keeps the operational surface small for a solo operator with no infrastructure team.
+- Self-promotion logic: the bot reads its own historical results and autonomously decides its next position-sizing tier, removing the need for manual review after each run.
+- Track-record-driven feedback loop: performance data written by the bot is also the input that governs its future behavior, creating a closed control system.
+- The promotion/demotion mechanism acts as a built-in drawdown guard — poor results reduce exposure before losses compound.
 
 ## Stack
 
