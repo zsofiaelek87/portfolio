@@ -76,7 +76,7 @@ Automated options analysis and daily review for Deribit traders
 
 ### [Binance Carry Bot](projects/binance-carry-bot.md)
 
-Automated carry-trade bot that evaluates its own performance to size future positions
+Automated carry-trade execution that promotes or demotes itself based on its own track record
 
 <sub>Python — 2 write-ups</sub>
 
