@@ -64,7 +64,7 @@ _No description yet._
 
 ### [Dev Team](projects/dev-team.md)
 
-Routes raw ideas through a PM gatekeeper to reviewed GitHub PRs with configurable auto-merge
+Routes rough ideas through a gated PM workflow to reviewed GitHub PRs — semi-automatically
 
 <sub>TypeScript — 1 write-up</sub>
 
