@@ -11,24 +11,24 @@
 
 ## What it is
 
-Tokenized-equity perpetuals on Hyperliquid are a nascent market where edge is unproven and the cost of finding out is real. This bot runs paper trades to measure whether two candidate strategies have an edge before any live capital is committed. Bounded position sizing, portfolio gates, and automatic exploration stops protect the model bankroll during the measurement phase.
+Tokenized-equity perpetuals are a new and thinly-researched instrument: edge is easy to imagine and hard to verify. This bot runs paper trades on Hyperliquid HIP-3 to measure whether two candidate strategies have real edge before any real capital is committed. Bankroll gates, minimum-size exploration limits, and automatic halt conditions keep the measurement process honest.
 
 ## How it works
 
-1. A backfill command seeds 48 hours of price references from Hyperliquid HIP-3.
-2. A run-once scan evaluates open signals against the two live strategies and places resting limit orders rather than chasing the market price.
-3. Before acting on any signal, the bot grades the underlying analyst call to decide whether the question is worth asking.
-4. Position size is determined by a pre-signal sizing model that accounts for uncertainty before the edge is confirmed.
-5. Exploration is halted automatically when stopping criteria are met or when a news event is imminent.
-6. A daily digest surfaces only the signals promoted to critical status, and stays silent rather than reporting with false confidence.
+1. A backfill command seeds 48-hour price references that the strategies use as baselines.
+2. A run-once scan evaluates current market conditions against those references and emits candidate orders.
+3. Sizing logic applies bounded minimum-size exploration so the edge measurement is not distorted by oversized early bets.
+4. Resting limit orders are placed rather than market orders, avoiding price-chasing slippage in paper fills.
+5. A daily digest command aggregates signals, suppressing output when confidence thresholds are not met.
+6. A ledger summary command tracks the running paper-trade record for review against the research benchmarks.
 
 ## What makes it interesting
 
-- Analyst grading before signal trust: the bot scores the source of each signal and withholds action when the analyst does not meet a quality bar, reducing noise from low-quality inputs.
-- Pre-signal sizing: position size is calculated under uncertainty before the signal is confirmed, so exploration itself is bounded and comparable across hypotheses.
-- Automatic exploration stop: a built-in circuit breaker halts further position-taking when statistical or portfolio conditions are met, preventing runaway paper losses.
-- Honest silence over false confidence: the digest omits signals that fall below a confidence threshold rather than reporting them with hedged language.
-- News-aware pause: the bot detects incoming scheduled events and steps back from new entries, avoiding fills into known high-uncertainty windows.
+- Analyst pre-grading: signals from the underlying analysis layer are scored for reliability before they are allowed to trigger sizing decisions.
+- Honest silence over false confidence: the bot emits no output rather than a low-confidence signal, reducing noise in the daily record.
+- Automatic exploration halt: a circuit-breaker stops new exploration when defined conditions are met, protecting the model bankroll from runaway measurement cost.
+- News-aware step-back: the bot detects scheduled news events and withholds orders during windows where adverse fills are likely.
+- Zero runtime dependencies: the entire system runs on the Python standard library, eliminating supply-chain and dependency-management risk.
 
 ## Stack
 
